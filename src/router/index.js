@@ -1,8 +1,8 @@
 import { createRouter,  
 
-// createWebHistory
+createWebHistory
 
-createWebHashHistory 
+// createWebHashHistory 
 
 
 
@@ -23,7 +23,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
 });
 
