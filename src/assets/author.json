@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "author": "徐贲",
+        "pic": "https://www.aisixiang.com/thinktank/images/photo/xuben2.gif",
+        "art_total": 556
+    },
+    {
+        "id": 2,
+        "author": "唐士其",
+        "pic": "http://www.aisixiang.com/thinktank/images/photo/TangShiQi2.gif",
+        "art_total": 55
+    },
+    {
+        "id": 3,
+        "author": "倪世雄",
+        "pic": "http://www.aisixiang.com/thinktank/images/photo/NiShiXiong2.gif",
+        "art_total": 88888
+    },
+    {
+        "id": 4,
+        "author": "李景治",
+        "pic": "http://www.aisixiang.com/thinktank/images/photo/LiJingZhi2.gif",
+        "art_total": 8
+    },
+    {
+        "id": 5,
+        "author": "张鸣",
+        "pic": "http://www.aisixiang.com/thinktank/images/photo/zhangming2.gif",
+        "art_total": 86
+    },
+    {
+        "id": 6,
+        "author": "程美东",
+        "pic": "http://www.aisixiang.com/thinktank/images/photo/chengmeidong2.gif",
+        "art_total": 85
+    },
+    {
+        "id": 7,
+        "author": "高锋",
+        "pic": "http://www.aisixiang.com/thinktank/images/photo/gaofeng2.gif",
+        "art_total": 856
+    },
+    {
+        "id": 8,
+        "author": "刘亚伟",
+        "pic": "http://www.aisixiang.com/thinktank/images/photo/liuyawei2.gif",
+        "art_total": 81
+    }
+]

@@ -1,0 +1,87 @@
+<template>
+  <div class="home-container">
+    <h1>独立之精神 自由之思想</h1>
+    <ul>
+      <li v-for="item in authorList" :key="item.pic">
+        <div class="content">
+          <img :src="item.pic" alt="" />
+          <div>
+            <span class="author">{{ item.author }}</span>
+            <span class="article-total">
+              <i>{{ item.art_total >= 999 ? "999+" : item.art_total }}</i>篇文章
+            </span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script setup>
+import authorList from "@/assets/author.json";
+
+
+</script>
+<style lang="less" scoped>
+.home-container {
+  padding: 0 16px 0 16px;
+
+  h1 {
+    padding: 25px;
+    text-align: center;
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    align-content: center;
+
+    li {
+      display: flex;
+      border-radius: 10px;
+      height: 85px;
+      align-items: center;
+      background-color: rgb(244, 245, 247);
+      padding: 0 10px;
+
+      .content {
+        display: flex;
+        height: 70px;
+
+        img {
+          height: 100%;
+          width: 56px;
+          vertical-align: bottom;
+          object-fit: cover;
+          margin-right: 12px;
+          flex: none;
+        }
+
+        div {
+          display: flex;
+          flex-wrap: wrap;
+          padding: 12px 0;
+          align-items: center;
+
+          .author {
+            flex: 100%;
+            font-size: 16px;
+          }
+
+          .article-total {
+            flex: 100%;
+            color: rgb(173, 180, 190);
+            font-size: 13px;
+
+            i {
+              font-family: din-medium;
+              margin-right: 3px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</style>
