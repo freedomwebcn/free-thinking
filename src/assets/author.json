@@ -64,5 +64,11 @@
         "author": "刘亚伟",
         "pic": "http://www.aisixiang.com/thinktank/images/photo/liuyawei2.gif",
         "art_total": 81
+    },
+    {
+        "id": 12,
+        "author": "王小波",
+        "pic": "http://www.aisixiang.com/thinktank/images/photo/wangxiaobo2.gif",
+        "art_total": 81
     }
 ]
