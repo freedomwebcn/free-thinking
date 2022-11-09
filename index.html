@@ -1,47 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no, viewport-fit=cover"
-    />
-    <title>Vite + Vue</title>
-    <link rel="stylesheet" href="/reset.css" />
-    <link href="https://fonts.lug.ustc.edu.cn/css2?family=Noto+Sans+SC&family=ZCOOL+XiaoWei" rel="stylesheet">
 
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/favicon.png" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no, viewport-fit=cover" />
+  <title>Vite + Vue</title>
+  <link rel="stylesheet" href="/reset.css" />
+  <link href="https://fonts.lug.ustc.edu.cn/css2?family=Noto+Sans+SC" rel="stylesheet">
+  <link href="https://fonts.lug.ustc.edu.cn/css2?family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3758864_1haue9jah7v.css">
+</head>
 
-    <link href="https://fonts.lug.ustc.edu.cn/css2?family=Zhi+Mang+Xing" rel="stylesheet">
-    <link rel="stylesheet" href="/icon.css">
+<style>
+  * {
+    touch-action: pan-y;
+    box-sizing: border-box;
+  }
 
+  @font-face {
+    font-family: din-medium;
+    font-display: block;
+    src: url(/ufonts.com_din-medium.ttf);
+  }
 
+  html,
+  body {
+    height: 100%;
+    font-family: 'Noto Sans SC', sans-serif !important;
+  }
 
+  #app {
+    width: 100%;
+    height: 100%;
+  }
+</style>
 
-    
-  </head>
+<body>
+  <div id="app"></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
 
-  <style>
-    * {
-      touch-action: pan-y;
-      box-sizing: border-box;
-    }
-    @font-face {
-      font-family: din-medium;
-      src: url(/ufonts.com_din-medium.ttf);
-    }
-    html,
-    body {
-      height: 100%;
-      font-family: 'Noto Sans SC', sans-serif !important;
-    }
-    #app {
-      width: 100%;
-      height: 100%;
-    }
-  </style>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
 </html>
