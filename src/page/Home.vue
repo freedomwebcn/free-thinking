@@ -5,7 +5,7 @@
       <span class="iconfont icon-bi icon"></span>
     </h1>
     <ul>
-      <li v-for="item in authorList" :key="item.pic">
+      <li v-for="(item, index) in authorList" :key="item.pic" @click="$router.push(`/author/${index + 1}`)">
         <div class="content">
           <img :src="item.pic" alt="" />
           <div>
@@ -16,18 +16,16 @@
           </div>
         </div>
       </li>
-
-
     </ul>
   </div>
 </template>
-
 <script setup>
 import authorList from "@/assets/author.json";
 </script>
 <style lang="less" scoped>
 .home-container {
-  padding: 0 16px 0 16px;
+  height: 100%;
+  padding: 0 16px;
 
   h1 {
     position: relative;
@@ -98,10 +96,7 @@ import authorList from "@/assets/author.json";
           }
         }
       }
-
-
     }
-
   }
 }
 </style>
