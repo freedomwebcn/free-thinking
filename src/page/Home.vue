@@ -1,6 +1,9 @@
 <template>
   <div class="home-container">
-    <h1>独立之精神 自由之思想</h1>
+    <h1>
+      独立之精神 自由之思想
+      <span class="iconfont icon-bi icon"></span>
+    </h1>
     <ul>
       <li v-for="item in authorList" :key="item.pic">
         <div class="content">
@@ -19,16 +22,28 @@
 
 <script setup>
 import authorList from "@/assets/author.json";
-
-
 </script>
 <style lang="less" scoped>
 .home-container {
   padding: 0 16px 0 16px;
 
   h1 {
+    position: relative;
+    font-size: 30px;
     padding: 25px;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
     text-align: center;
+    border-bottom: 3px solid rgb(15, 15, 15);
+    font-family: 'Zhi Mang Xing', cursive;
+    font-weight: normal;
+
+    .icon {
+      position: absolute;
+      right: 0;
+      bottom: -4px;
+      font-size: 28px;
+    }
   }
 
   ul {
