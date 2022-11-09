@@ -16,6 +16,10 @@
           </div>
         </div>
       </li>
+
+      <li class="more-author">
+        <span class="more">更多作者</span>
+      </li>
     </ul>
   </div>
 </template>
@@ -96,7 +100,15 @@ import authorList from "@/assets/author.json";
           }
         }
       }
+
+      &.more-author {
+        justify-content: center;
+        font-size: 18px;
+        font-weight: 600;
+        color: #adb4be;
+      }
     }
+
   }
 }
 </style>
