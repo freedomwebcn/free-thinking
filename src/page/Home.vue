@@ -30,7 +30,7 @@ import authorList from "@/assets/author.json";
   h1 {
     position: relative;
     font-size: 30px;
-    padding: 22px 0 5px 0;
+    padding: 22px 0 10px 0;
     margin-bottom: 15px;
     text-align: center;
     border-bottom: 3px solid rgb(15, 15, 15);
