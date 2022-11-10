@@ -2,10 +2,8 @@
     <div class="author-container">
         <header></header>
         <div class="content">
-
             <ul>
-                <li><iframe src="/1.html" frameborder="0" style="width: 100%;height: 100%;"></iframe></li>
-
+                <li @click="$router.push(`/author/1/1`)">art title</li>
             </ul>
         </div>
     </div>
