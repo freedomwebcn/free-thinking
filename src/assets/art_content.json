@@ -2,8 +2,14 @@
     {
         "id": 1,
         "author": "陈寅恪",
-        "pic": "http://www.aisixiang.com/thinktank/images/photo/ChenYinQue2.gif",
-        "art_total": 816
+        "art_content": {
+            "1": [
+                "https://i.postimg.cc/sD00JD21/QQ-20221110103153.png"
+            ],
+            "2": [
+                "333"
+            ]
+        }
     },
     {
         "id": 2,

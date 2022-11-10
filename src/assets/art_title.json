@@ -2,8 +2,10 @@
     {
         "id": 1,
         "author": "陈寅恪",
-        "pic": "http://www.aisixiang.com/thinktank/images/photo/ChenYinQue2.gif",
-        "art_total": 816
+        "art_title_list": [
+            "论独立与自由",
+            "test"
+        ]
     },
     {
         "id": 2,

@@ -26,6 +26,7 @@ import authorList from "@/assets/author.json";
 .home-container {
   height: 100%;
   padding: 0 16px;
+  overflow-y: auto;
 
   h1 {
     position: relative;
@@ -50,6 +51,7 @@ import authorList from "@/assets/author.json";
     grid-template-columns: 1fr 1fr;
     gap: 10px;
     align-content: center;
+    margin-bottom: 10px;
 
     li {
       display: flex;
@@ -82,6 +84,7 @@ import authorList from "@/assets/author.json";
           .author {
             flex: 100%;
             font-size: 16px;
+            font-family: 'Noto Serif SC', serif;
           }
 
           .article-total {
