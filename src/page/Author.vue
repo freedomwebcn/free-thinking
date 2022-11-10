@@ -4,7 +4,7 @@
         <div class="content">
 
             <ul>
-                <li><iframe src="/src/assets/1.html" frameborder="0" style="width: 100%;height: 100%;"></iframe></li>
+                <li><iframe src="/1.html" frameborder="0" style="width: 100%;height: 100%;"></iframe></li>
 
             </ul>
         </div>
