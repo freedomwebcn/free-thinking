@@ -3,7 +3,7 @@
         <header></header>
         <div class="content">
             <ul>
-                <li @click="$router.push(`/author/1/1`)">art title</li>
+                <li @click="$router.push(`/author/1/1`)">“花生夜间开花”谎言破产记</li>
             </ul>
         </div>
     </div>
@@ -43,11 +43,10 @@ console.log(route.params.id);
             height: 100%;
 
             li {
-                // padding: 20px 0 20px 5px;
+                padding: 20px 0 20px 5px;
                 border-bottom: 1px solid #ebedf1;
                 border-radius: 5px;
-                // padding-left: 15px;
-                height: 100%;
+                padding-left: 15px;
 
                 img {
                     width: 100%;

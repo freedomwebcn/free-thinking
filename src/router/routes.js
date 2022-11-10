@@ -21,7 +21,7 @@ const routes = [{
     component: Author,
 },
 {
-    path: "/author/:id/:artid",
+    path: "/author/1/1",
     name: "art",
     component: art_1_1,
 }
