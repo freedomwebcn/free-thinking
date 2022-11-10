@@ -1,7 +1,8 @@
 <template>
+    <NProgress />
     <div class="art-container">
         <h1>“花生夜间开花”谎言破产记</h1>
-        <div class="content">
+        <div class="content" ref="scrollRef">
             <p>
                 “花生夜间开花”奇闻，是“文革”期间“四人帮”炮制出来的一场荒唐闹剧，目的是借工农兵学毛著、搞科研之名，贬低、打击知识分子。闹剧的主要人物是“花生大王”、农民学毛著积极分子姚士昌。
             </p>
@@ -122,13 +123,15 @@
     </div>
 
 </template>
-
-
+<script setup>
+import NProgress from '@/components/NProgress.vue';
+</script>
 <style lang="less" scoped>
 .art-container {
-    height: 100%;
+    // height: 100%;
     overflow-y: scroll;
     font-family: 'Noto Serif SC', serif;
+
     h1 {
         text-align: center;
         font-size: 22px;

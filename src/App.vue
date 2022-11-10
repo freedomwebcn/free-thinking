@@ -12,7 +12,7 @@
   height: 100%;
   max-width: 540px;
   margin: 0 auto;
-  overflow: hidden;
+  // overflow: hidden;
 
 }
 </style>

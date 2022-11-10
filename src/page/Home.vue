@@ -26,7 +26,7 @@ import authorList from "@/assets/author.json";
 .home-container {
   height: 100%;
   padding: 0 16px;
-  overflow-y: auto;
+  // overflow-y: auto;
 
   //   chrome去除滚动条样式
   &::-webkit-scrollbar {

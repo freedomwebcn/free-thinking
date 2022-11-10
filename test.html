@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css">
+    <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script> -->
+</head>
+
+<style>
+    .prograss {
+        background: #29d;
+        position: fixed;
+        z-index: 1031;
+        top: 0;
+        left: 0;
+        height: 2px;
+    }
+
+
+    .prograss .peg {
+        position: absolute;
+        right: 0px;
+        width: 100px;
+        height: 100%;
+        box-shadow: 0 0 10px #29d, 0 0 5px #29d;
+        opacity: 1.0;
+        transform: rotate(3deg) translate(0px, -4px);
+    }
+
+    ul li {
+        width: 100%;
+        height: 500px;
+    }
+</style>
+
+<body>
+    <div class="prograss">
+        <div class="peg"></div>
+    </div>
+
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>1</li>
+        <li>2</li>
+        <li>8</li>
+    </ul>
+    <script>
+        document.addEventListener('scroll', function () {
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+            var scrollHeight = document.documentElement.scrollHeight
+            var clientHeight = document.documentElement.clientHeight
+           document.querySelector('.prograss').style.width = +scrollTop / (scrollHeight -clientHeight).toFixed(2) * 100 + "%"
+        })
+    </script>
+</body>
+
+</html>
