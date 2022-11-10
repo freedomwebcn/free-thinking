@@ -28,6 +28,22 @@ import authorList from "@/assets/author.json";
   padding: 0 16px;
   overflow-y: auto;
 
+  //   chrome去除滚动条样式
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  //   兼容火狐
+  &.scw {
+    scrollbar-width: none;
+    overflow: -moz-scrollbars-none;
+  }
+
+  //   兼容IE10+
+  &.msscw {
+    -ms-overflow-style: none;
+  }
+
   h1 {
     position: relative;
     font-size: 30px;

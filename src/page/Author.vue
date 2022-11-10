@@ -3,7 +3,7 @@
         <header></header>
         <div class="content">
             <ul>
-                <li @click="$router.push(`/author/1/1`)">“花生夜间开花”谎言破产记</li>
+                <li @click="$router.push(`/author/12/1`)">“花生夜间开花”谎言破产记</li>
             </ul>
         </div>
     </div>
@@ -39,7 +39,7 @@ console.log(route.params.id);
         }
 
         ul {
-            font-size: 16px;
+            font-size: 18px;
             height: 100%;
 
             li {

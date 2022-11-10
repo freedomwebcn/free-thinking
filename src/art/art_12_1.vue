@@ -129,7 +129,6 @@
     height: 100%;
     overflow-y: scroll;
     font-family: 'Noto Serif SC', serif;
-    background: #f3e9c6 url(https://yuxseocdn.yuewen.com/pro/hongxiu_pc/_prelease/images/read/body_base_bg.5988a.png) repeat;
     h1 {
         text-align: center;
         font-size: 22px;

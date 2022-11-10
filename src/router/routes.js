@@ -1,6 +1,6 @@
 import Home from "@/page/Home.vue";
 import Author from "@/page/Author.vue";
-import art_1_1 from "@/art/art_1_1.vue";
+import art_12_1 from "@/art/art_12_1.vue";
 
 
 
@@ -21,9 +21,9 @@ const routes = [{
     component: Author,
 },
 {
-    path: "/author/1/1",
+    path: "/author/12/1",
     name: "art",
-    component: art_1_1,
+    component: art_12_1,
 }
 ];
 
