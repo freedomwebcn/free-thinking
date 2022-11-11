@@ -12,7 +12,7 @@
 
 <style>
     .prograss {
-        background: #29d;
+        background: rgb(34, 93, 221);
         position: fixed;
         z-index: 1031;
         top: 0;
@@ -26,7 +26,7 @@
         right: 0px;
         width: 100px;
         height: 100%;
-        box-shadow: 0 0 10px #29d, 0 0 5px #29d;
+        box-shadow: 0 0 10px rgb(34, 93, 221), 0 0 5px rgb(34, 93, 221);
         opacity: 1.0;
         transform: rotate(3deg) translate(0px, -4px);
     }
@@ -64,8 +64,12 @@
             var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
             var scrollHeight = document.documentElement.scrollHeight
             var clientHeight = document.documentElement.clientHeight
-           document.querySelector('.prograss').style.width = +scrollTop / (scrollHeight -clientHeight).toFixed(2) * 100 + "%"
+            document.querySelector('.prograss').style.width = +scrollTop / (scrollHeight - clientHeight)
+                .toFixed(2) * 100 + "%"
         })
+
+
+   
     </script>
 </body>
 

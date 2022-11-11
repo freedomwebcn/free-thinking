@@ -1,5 +1,6 @@
 <template>
     <div class="mgz-container">
+        <van-search placeholder="请输入期刊号 比如199101或199112" />
         <ul>
             <template v-for="(item, i) in magazineList">
                 <li v-for="issueObj in item.pubIssue" :key="issueObj.issue">
@@ -7,7 +8,7 @@
                         <img :src="issueObj.img" alt="">
                         <span class="bookCover_gradientDecor"></span>
                     </div>
-                    <span class="issue">{{ item.pubYear + issueObj.issue}}</span>
+                    <span class="issue">{{ item.pubYear + issueObj.issue }}</span>
                 </li>
             </template>
         </ul>
@@ -60,7 +61,7 @@ import magazineList from "@/assets/magazine.json"
             .issue {
                 display: block;
                 margin: 6px 0;
-                font-size: 13px;
+                font-size: 15px;
                 text-align: center;
                 color: #5d646e;
             }
