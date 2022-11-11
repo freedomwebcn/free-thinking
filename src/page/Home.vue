@@ -5,7 +5,7 @@
       <span class="iconfont icon-bi icon"></span>
     </h1>
     <ul>
-      <li v-for="(item, index) in authorList" :key="item.pic" @click="$router.push(`/author/${index + 1}`)"
+      <li v-for="(item, index) in authorList" :key="item.pic" @click="jumpRouter({ index, isMgz: item.isMgz })"
         :class="{ 'is-mgz': item.isMgz }">
         <div class="content">
           <img :src="item.pic" alt="" />
@@ -24,7 +24,19 @@
   </div>
 </template>
 <script setup>
+import { useRouter } from 'vue-router'
 import authorList from "@/assets/author.json";
+
+const router = useRouter()
+const jumpRouter = ({ index, isMgz }) => {
+  if (!isMgz) {
+    router.push(`/author/${index + 1}`)
+    return
+  };
+  router.push(`/magazine/${index + 1}`)
+}
+
+
 </script>
 <style lang="less" scoped>
 .home-container {
