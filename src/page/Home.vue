@@ -5,13 +5,17 @@
       <span class="iconfont icon-bi icon"></span>
     </h1>
     <ul>
-      <li v-for="(item, index) in authorList" :key="item.pic" @click="$router.push(`/author/${index + 1}`)">
+      <li v-for="(item, index) in authorList" :key="item.pic" @click="$router.push(`/author/${index + 1}`)"
+        :class="{ 'is-mgz': item.isMgz }">
         <div class="content">
           <img :src="item.pic" alt="" />
           <div>
             <span class="author">{{ item.author }}</span>
             <span class="article-total">
-              <i>{{ item.art_total >= 999 ? "999+" : item.art_total }}</i>篇文章
+              {{ item.isMgz ? "共" : "" }}
+              <i>
+                {{ item.art_total >= 999 ? "999+" : item.art_total }}
+              </i>{{ item.isMgz ? "期" : "篇文章" }}
             </span>
           </div>
         </div>
@@ -26,7 +30,7 @@ import authorList from "@/assets/author.json";
 .home-container {
   height: 100%;
   padding: 0 16px;
-  // overflow-y: auto;
+  overflow-y: auto;
 
   //   chrome去除滚动条样式
   &::-webkit-scrollbar {
@@ -34,15 +38,10 @@ import authorList from "@/assets/author.json";
   }
 
   //   兼容火狐
-  &.scw {
-    scrollbar-width: none;
-    overflow: -moz-scrollbars-none;
-  }
-
+  scrollbar-width: none;
+  overflow: -moz-scrollbars-none;
   //   兼容IE10+
-  &.msscw {
-    -ms-overflow-style: none;
-  }
+  -ms-overflow-style: none;
 
   h1 {
     position: relative;
@@ -76,6 +75,7 @@ import authorList from "@/assets/author.json";
       align-items: center;
       background-color: rgb(244, 245, 247);
       padding: 0 10px;
+
 
       .content {
         display: flex;
@@ -115,6 +115,17 @@ import authorList from "@/assets/author.json";
           }
         }
       }
+
+      &.is-mgz {
+        grid-column: 1 / span 2;
+
+        .content {
+          div {
+            padding: 0;
+          }
+        }
+      }
+
     }
   }
 }

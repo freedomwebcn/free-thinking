@@ -8,11 +8,12 @@
 
 <style lang="less" scoped>
 .app {
-  width: 375px;
+  width: 100%;
   height: 100%;
   max-width: 540px;
   margin: 0 auto;
-  // overflow: hidden;
+
+
 
 }
 </style>

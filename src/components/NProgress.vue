@@ -1,26 +1,44 @@
 <template>
-    <div class="prograss" ref="prograssRef">
+    <div class="container" ref="containerRef">
+        <div class="content" ref="contentRef">
+            <slot></slot>
+        </div>
+    </div>
+    <div class="prograss" ref="prograssRef" :style="{ 'width': w }">
         <div class="peg"></div>
     </div>
 </template>
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref } from "vue"
+import { getNProgressW } from "@/components/nprogress"
 
-
-const prograssRef = ref(null)
-// 监听滚动
-onMounted(() => {
-    document.addEventListener("scroll", () => {
-        const scrollHeight = document.documentElement.scrollHeight
-        const clientHeight = document.documentElement.clientHeight
-        const scrollTop = document.documentElement.scrollTop
-        prograssRef.value.style.width = +scrollTop / (scrollHeight - clientHeight).toFixed(2) * 100 + "%"
-    });
-});
-
+const containerRef = ref(null)
+const contentRef = ref(null)
+const { w } = getNProgressW(containerRef, contentRef)
 </script>
 
 <style lang="less" scoped>
+.container {
+    height: 100%;
+    overflow-y: scroll;
+    font-family: 'Noto Serif SC', serif;
+
+    //   chrome去除滚动条样式
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    //   兼容火狐
+    scrollbar-width: none;
+    overflow: -moz-scrollbars-none;
+    //   兼容IE10+
+    -ms-overflow-style: none;
+
+    .content {
+        padding: 0 25px;
+    }
+}
+
 .prograss {
     background: #29d;
     position: fixed;

@@ -1,6 +1,6 @@
 <template>
     <div class="author-container">
-        <header></header>
+        <!-- <header></header> -->
         <div class="content">
             <ul>
                 <li @click="$router.push(`/author/12/1`)">“花生夜间开花”谎言破产记</li>
@@ -20,17 +20,10 @@ console.log(route.params.id);
 .author-container {
     height: 100%;
 
-    header {
-        width: 375px;
-        height: 56px;
-        position: fixed;
-        // background-color: red;
-    }
-
     .content {
         // display: grid;
         height: 100%;
-        padding: 56px 0px 0 0px;
+        // padding: 56px 0px 0 0px;
         // grid-auto-rows: min-content;
 
         h1 {
