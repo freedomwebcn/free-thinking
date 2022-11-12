@@ -1,21 +1,26 @@
 <template>
     <van-config-provider :theme-vars="themeVars" style="height: 100%">
-        <div class="mgz-container">
-            <div class="search-box" :class="{ bgc:!isShow}">
-                <van-search placeholder="请输入期刊号" @focus="focus" @blur="blur" :shape=shape />
+        <div class="container">
+            <div class="search-box">
+                <van-search placeholder="请输入期刊号" @focus="focus" @blur="blur" />
                 <div class="tip-box " v-show="isShow">
-
                     <div class="query-mode">
                         <h3 class="tip-box-title">
                             <span class="line"></span>
                             期刊号输入格式
                         </h3>
                         <div class="fuzzy-query van-hairline--bottom">
-                            <h3>模糊查询:</h3>
-                            <span>只输入杂志的发行年份，可查询到该年份发行的所有期刊。</span>
+                            <h3>
+                                <span class="line"></span>
+                                模糊查询:
+                            </h3>
+                            <span>只需输入杂志的发行年份，可查询到该年份发行的所有期刊。</span>
                         </div>
                         <div class="exact-query">
-                            <h3>精确查询:</h3>
+                            <h3>
+                                <span class="line"></span>
+                                精确查询:
+                            </h3>
                             <span>输入发行年份+期号，例如:要查询1991年发行的01期期刊，只需输入199101即可查询到。</span>
                         </div>
                     </div>
@@ -47,13 +52,12 @@ import { ref } from "vue"
 import { chunk } from 'lodash';
 import magazineList from "@/assets/magazine.json"
 
-// shape="round"
 const loading = ref(false);
 const finished = ref(false);
 const formatData = []
 const result = ref([])
 const isShow = ref(false)
-const shape = ref("square")
+
 
 magazineList.forEach(item => {
     item.pubIssue.forEach(issueObj => {
@@ -62,7 +66,7 @@ magazineList.forEach(item => {
         formatData.push({ publishDate: pubYear + issue, img })
     })
 })
-result.value = chunk(formatData, 24)
+result.value = chunk(formatData, 18)
 
 let index = 0
 const onLoad = () => {
@@ -81,18 +85,17 @@ const onLoad = () => {
 
 const themeVars = ref({
     "searchInputHeight": '40px',
-    // "searchPadding": '0.4rem 10px',
     "searchBackgroundColor": '#fff'
 })
 
 const focus = () => {
     isShow.value = true
     themeVars.value.searchBackgroundColor = 'none'
-    // shape.value = 'round'
 }
 
 const blur = () => {
     isShow.value = false
+    themeVars.value.searchBackgroundColor = '#fff'
 }
 
 </script>
@@ -107,7 +110,7 @@ const blur = () => {
     background-color: rgba(0, 0, 0, .8);
 }
 
-.mgz-container {
+.container {
     width: 100%;
     height: 100%;
     overflow-y: scroll;
@@ -128,10 +131,6 @@ const blur = () => {
         width: 375px;
         z-index: 9999;
 
-        &.bgc {
-            background-color: #fff;
-        }
-
         .tip-box {
             position: absolute;
             z-index: 999;
@@ -140,16 +139,13 @@ const blur = () => {
             padding-right: 12px;
 
             h3 {
-                font-weight: normal;
-                color: #353c46;
-            }
-
-            .tip-box-title {
-                font-size: 15px;
                 display: flex;
                 align-items: center;
-                
-                .line{
+                font-weight: normal;
+                font-size: 15px;
+                color: #353c46;
+
+                .line {
                     width: 5px;
                     height: 18px;
                     background-color: red;
@@ -161,18 +157,15 @@ const blur = () => {
                 display: grid;
                 row-gap: 10px;
                 background-color: white;
-                // border-radius: 12px;
                 padding: 15px 10px;
                 border-bottom-left-radius: 2px;
                 border-bottom-right-radius: 2px;
-                // border: 8px solid rgb(247, 248, 250);
-                // border-radius: 10px;
 
                 h3 {
                     margin-top: 0px;
                     margin-bottom: 5px;
-                    font-size: 15px;
                     color: #0d141e;
+
                 }
 
                 span {
@@ -184,6 +177,20 @@ const blur = () => {
 
                 .fuzzy-query {
                     padding-bottom: 10px;
+
+                    h3 {
+                        .line {
+                            background-color: #353c46;
+                        }
+                    }
+                }
+
+                .exact-query {
+                    h3 {
+                        .line {
+                            background-color: #086cf8;
+                        }
+                    }
                 }
             }
         }
@@ -202,8 +209,6 @@ const blur = () => {
         gap: 10px;
         justify-items: center;
         padding: 60px 10px 0 10px;
-
-
 
         li {
             width: 105px;
@@ -237,7 +242,8 @@ const blur = () => {
                 margin: 6px 0;
                 font-size: 15px;
                 text-align: center;
-                color: #5d646e;
+                // color: #5d646e;
+                color: #0d141e;
             }
         }
     }
