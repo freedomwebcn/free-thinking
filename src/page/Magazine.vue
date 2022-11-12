@@ -26,9 +26,7 @@
                     </div>
                 </div>
             </div>
-
-            <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad"
-                :immediate-check="false" offset="50">
+            <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad" :immediate-check="false" offset="50">
                 <ul>
                     <li v-for="item in result[0]" :key="item.publishDate">
                         <div class="book-cover">
@@ -40,7 +38,6 @@
                 </ul>
             </van-list>
         </div>
-
         <transition name="van-fade">
             <div class="page-cover" v-show="isShow"></div>
         </transition>
@@ -57,7 +54,6 @@ const finished = ref(false);
 const formatData = []
 const result = ref([])
 const isShow = ref(false)
-
 
 magazineList.forEach(item => {
     item.pubIssue.forEach(issueObj => {
