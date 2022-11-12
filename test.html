@@ -8,11 +8,13 @@
     <title>Document</title>
     <!-- <link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css">
     <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+
 </head>
 
 <style>
     .prograss {
-        background: rgb(34, 93, 221);
+        background: rgb(34, 93, 221); 
         position: fixed;
         z-index: 1031;
         top: 0;
@@ -68,8 +70,120 @@
                 .toFixed(2) * 100 + "%"
         })
 
+        //========================
 
-   
+
+
+        const data = [{
+                "pubYear": "1991年",
+                "pubIssue": [{
+                        "issue": "01期",
+                        "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199101.jpg"
+                    },
+                    {
+                        "issue": "02期",
+                        "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199102.jpg"
+                    },
+                    {
+                        "issue": "03期",
+                        "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199103.jpg"
+                    }
+                ]
+            },
+            {
+                "pubYear": "1992年",
+                "pubIssue": [{
+                        "issue": "01期",
+                        "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199201.jpg"
+                    },
+                    {
+                        "issue": "02期",
+                        "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199202.jpg"
+                    },
+                    {
+                        "issue": "03期",
+                        "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199203.jpg"
+                    },
+                    {
+                        "issue": "04期",
+                        "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199204.jpg"
+                    },
+                    {
+                        "issue": "05期",
+                        "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199205.jpg"
+                    },
+                    {
+                        "issue": "06期",
+                        "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199206.jpg"
+                    }
+                ]
+            },
+            {
+                "pubYear": "1993年",
+                "pubIssue": [{
+                        "issue": "01期",
+                        "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199301.jpg"
+                    },
+                    {
+                        "issue": "02期",
+                        "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199302.jpg"
+                    },
+                    {
+                        "issue": "03期",
+                        "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199303.jpg"
+                    },
+                    {
+                        "issue": "04期",
+                        "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199304.jpg"
+                    },
+                    {
+                        "issue": "05期",
+                        "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199305.jpg"
+                    },
+                    {
+                        "issue": "06期",
+                        "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199306.jpg"
+                    },
+                    {
+                        "issue": "07期",
+                        "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199307.jpg"
+                    },
+                    {
+                        "issue": "08期",
+                        "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199308.jpg"
+                    },
+                    {
+                        "issue": "09期",
+                        "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199309.jpg"
+                    },
+                    {
+                        "issue": "10期",
+                        "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199310.jpg"
+                    },
+                    {
+                        "issue": "11期",
+                        "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199311.jpg"
+                    },
+                    {
+                        "issue": "12期",
+                        "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199312.jpg"
+                    }
+                ]
+            }
+        ]
+
+        const arr = []
+        const result = []
+        data.forEach((item, i) => {
+            item.pubIssue.forEach((issueObj,index) => {
+                const {pubYear} = item
+                const { issue, img} = issueObj
+                arr.push({publishDate: pubYear + issue, img})
+            })
+        })
+
+        result.push(_.chunk(arr,12))
+        console.log(result);
     </script>
 </body>
 

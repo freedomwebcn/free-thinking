@@ -1,3 +1,3 @@
-// module.exports = {
-//     printWidth:200
-// }
+module.exports = {
+    printWidth:200
+}

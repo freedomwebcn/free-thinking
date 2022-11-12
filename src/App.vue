@@ -8,12 +8,9 @@
 
 <style lang="less" scoped>
 .app {
-  width: 100%;
+  width: 375px;
   height: 100%;
   max-width: 540px;
   margin: 0 auto;
-
-
-
 }
 </style>
