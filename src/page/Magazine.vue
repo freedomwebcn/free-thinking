@@ -1,24 +1,27 @@
 <template>
     <van-config-provider :theme-vars="themeVars" style="height: 100%">
         <div class="mgz-container">
-            <div class="search-box">
+            <div class="search-box" :class="{ bgc:!isShow}">
                 <van-search placeholder="请输入期刊号" @focus="focus" @blur="blur" :shape=shape />
-            </div>
-            <div class="tip-box " v-show="isShow">
-                <h3 class="tip-box-title">
-                    期刊号输入格式
-                </h3>
-                <div class="query-mode">
-                    <div class="fuzzy-query van-hairline--bottom">
-                        <h3>模糊查询:</h3>
-                        <span>只输入杂志的发行年份，可查询到该年份发行的所有期刊。</span>
-                    </div>
-                    <div class="exact-query">
-                        <h3>精确查询:</h3>
-                        <span>输入发行年份+期号，例如:要查询1991年发行的01期期刊，只需输入199101即可查询到。</span>
+                <div class="tip-box " v-show="isShow">
+
+                    <div class="query-mode">
+                        <h3 class="tip-box-title">
+                            <span class="line"></span>
+                            期刊号输入格式
+                        </h3>
+                        <div class="fuzzy-query van-hairline--bottom">
+                            <h3>模糊查询:</h3>
+                            <span>只输入杂志的发行年份，可查询到该年份发行的所有期刊。</span>
+                        </div>
+                        <div class="exact-query">
+                            <h3>精确查询:</h3>
+                            <span>输入发行年份+期号，例如:要查询1991年发行的01期期刊，只需输入199101即可查询到。</span>
+                        </div>
                     </div>
                 </div>
             </div>
+
             <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad"
                 :immediate-check="false" offset="50">
                 <ul>
@@ -32,7 +35,10 @@
                 </ul>
             </van-list>
         </div>
-        <div class="page-cover" v-show="isShow"></div>
+
+        <transition name="van-fade">
+            <div class="page-cover" v-show="isShow"></div>
+        </transition>
     </van-config-provider>
 </template>
 
@@ -75,20 +81,18 @@ const onLoad = () => {
 
 const themeVars = ref({
     "searchInputHeight": '40px',
-    "searchPadding": '15px 10px',
+    // "searchPadding": '0.4rem 10px',
     "searchBackgroundColor": '#fff'
 })
 
 const focus = () => {
     isShow.value = true
     themeVars.value.searchBackgroundColor = 'none'
-    shape.value = 'round'
+    // shape.value = 'round'
 }
 
 const blur = () => {
-    themeVars.value.searchBackgroundColor = '#fff'
     isShow.value = false
-    shape.value = 'square'
 }
 
 </script>
@@ -100,8 +104,7 @@ const blur = () => {
     left: 0;
     bottom: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, .1);
-    backdrop-filter: blur(60px);
+    background-color: rgba(0, 0, 0, .8);
 }
 
 .mgz-container {
@@ -124,61 +127,83 @@ const blur = () => {
         position: fixed;
         width: 375px;
         z-index: 9999;
-    }
 
-    .tip-box {
-        position: absolute;
-        width: 375px;
-        z-index: 999;
-        padding-top: 65px;
-        padding-left: 10px;
-        padding-right: 10px;
-
-
-
-        h3 {
-            font-weight: normal;
-            color: #353c46;
+        &.bgc {
+            background-color: #fff;
         }
 
-        .tip-box-title {
-            padding-left: 10px;
-            font-size: 15px;
-        }
-
-        .query-mode {
-            display: grid;
-            row-gap: 10px;
-            background-color: white;
-            border-radius: 12px;
-            padding: 15px 10px;
+        .tip-box {
+            position: absolute;
+            z-index: 999;
+            top: 45px;
+            padding-left: 12px;
+            padding-right: 12px;
 
             h3 {
-                margin-top: 0px;
-                margin-bottom: 5px;
+                font-weight: normal;
+                color: #353c46;
+            }
+
+            .tip-box-title {
                 font-size: 15px;
-                color: #0d141e;
+                display: flex;
+                align-items: center;
+                
+                .line{
+                    width: 5px;
+                    height: 18px;
+                    background-color: red;
+                    margin-right: 5px;
+                }
             }
 
-            span {
-                display: block;
-                line-height: 1.5em;
-                color: #858c96;
-                font-size: 13px;
-            }
+            .query-mode {
+                display: grid;
+                row-gap: 10px;
+                background-color: white;
+                // border-radius: 12px;
+                padding: 15px 10px;
+                border-bottom-left-radius: 2px;
+                border-bottom-right-radius: 2px;
+                // border: 8px solid rgb(247, 248, 250);
+                // border-radius: 10px;
 
-            .fuzzy-query {
-                padding-bottom: 10px;
+                h3 {
+                    margin-top: 0px;
+                    margin-bottom: 5px;
+                    font-size: 15px;
+                    color: #0d141e;
+                }
+
+                span {
+                    display: block;
+                    line-height: 1.5em;
+                    color: #858c96;
+                    font-size: 14px;
+                }
+
+                .fuzzy-query {
+                    padding-bottom: 10px;
+                }
+            }
+        }
+
+        @media screen and (min-width: 540px) {
+            .tip-box {
+                top: 37px
             }
         }
     }
+
 
     ul {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 10px;
         justify-items: center;
-        padding: 72px 10px 0 10px;
+        padding: 60px 10px 0 10px;
+
+
 
         li {
             width: 105px;
@@ -214,6 +239,12 @@ const blur = () => {
                 text-align: center;
                 color: #5d646e;
             }
+        }
+    }
+
+    @media screen and (min-width: 540px) {
+        ul {
+            padding-top: 50px
         }
     }
 }
