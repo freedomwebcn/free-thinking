@@ -2,7 +2,7 @@
     <van-config-provider :theme-vars="themeVars" style="height: 100%">
         <div class="container">
             <div class="search-box">
-                <van-search placeholder="请输入期刊号" @focus="focus" @blur="blur" />
+                <van-search placeholder="请输入期刊号" @focus="focus" @blur="blur" :shape="shape" />
                 <div class="tip-box " v-show="isShow">
                     <div class="query-mode">
                         <h3 class="tip-box-title">
@@ -29,7 +29,8 @@
             <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad"
                 :immediate-check="false" offset="50">
                 <ul>
-                    <li v-for="item in result[0]" :key="item.publishDate" @click="$router.push(`/magazineInfo/${item.publishDate}`)">
+                    <li v-for="item in result[0]" :key="item.publishDate"
+                        @click="$router.push(`/magazineInfo/${item.publishDate}`)">
                         <div class="book-cover">
                             <img v-lazy="item.img" alt="">
                             <span class="bookCover_gradientDecor"></span>
@@ -55,6 +56,7 @@ const finished = ref(false);
 const formatData = []
 const result = ref([])
 const isShow = ref(false)
+const shape = ref("round")
 
 magazineList.forEach(item => {
     item.pubIssue.forEach(issueObj => {
@@ -82,17 +84,21 @@ const onLoad = () => {
 };
 const themeVars = ref({
     "searchInputHeight": '40px',
-    "searchBackgroundColor": '#fff'
+    "searchBackgroundColor": 'rgb(244, 245, 247)',
+    "searchContentBackgroundColor": "#fff",
+    "searchLeftIconColor": "rgb(111, 120, 129)"
 })
 
 const focus = () => {
     isShow.value = true
+    shape.value = "square"
     themeVars.value.searchBackgroundColor = 'none'
 }
 
 const blur = () => {
     isShow.value = false
-    themeVars.value.searchBackgroundColor = '#fff'
+    shape.value = "round"
+    themeVars.value.searchBackgroundColor = 'rgb(244, 245, 247)'
 }
 
 </script>
@@ -111,6 +117,7 @@ const blur = () => {
     width: 100%;
     height: 100%;
     overflow-y: scroll;
+    background-color: rgb(244, 245, 247);
 
     //   chrome去除滚动条样式
     &::-webkit-scrollbar {
@@ -127,6 +134,15 @@ const blur = () => {
         position: fixed;
         width: 375px;
         z-index: 9999;
+
+        :deep(.van-search) {
+            .van-field__body {
+                input::placeholder {
+                    color: rgb(111, 120, 129);
+                }
+
+            }
+        }
 
         .tip-box {
             position: absolute;
@@ -240,7 +256,7 @@ const blur = () => {
                 font-size: 15px;
                 text-align: center;
                 // color: #5d646e;
-                color: #0d141e;
+                color: rgb(33, 40, 50);
             }
         }
     }

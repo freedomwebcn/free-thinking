@@ -127,6 +127,7 @@ import NProgress from '@/components/NProgress.vue';
 
 </script>
 <style lang="less" scoped>
+@import 'lxgw-wenkai-screen-webfont/style.css';
 .article {
     font-family: "LXGW WenKai Screen", sans-serif;
     h1 {
