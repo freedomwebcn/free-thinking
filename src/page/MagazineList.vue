@@ -26,9 +26,10 @@
                     </div>
                 </div>
             </div>
-            <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad" :immediate-check="false" offset="50">
+            <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad"
+                :immediate-check="false" offset="50">
                 <ul>
-                    <li v-for="item in result[0]" :key="item.publishDate">
+                    <li v-for="item in result[0]" :key="item.publishDate" @click="$router.push(`/magazineInfo/${item.publishDate}`)">
                         <div class="book-cover">
                             <img v-lazy="item.img" alt="">
                             <span class="bookCover_gradientDecor"></span>
@@ -46,7 +47,7 @@
 
 <script setup>
 import { ref } from "vue"
-import { chunk } from 'lodash';
+import { chunk, random } from 'lodash';
 import magazineList from "@/assets/magazine.json"
 
 const loading = ref(false);
@@ -67,6 +68,7 @@ result.value = chunk(formatData, 18)
 let index = 0
 const onLoad = () => {
     //模拟下拉加载
+    const randomNum = random(500, 1000)
     setTimeout(() => {
         index += 1
         result.value[0].push(...result.value[index])
@@ -76,9 +78,8 @@ const onLoad = () => {
         if (result.value[0].length >= formatData.length) {
             finished.value = true;
         }
-    }, 500);
+    }, randomNum);
 };
-
 const themeVars = ref({
     "searchInputHeight": '40px',
     "searchBackgroundColor": '#fff'

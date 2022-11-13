@@ -128,6 +128,7 @@ import NProgress from '@/components/NProgress.vue';
 </script>
 <style lang="less" scoped>
 .article {
+    font-family: "LXGW WenKai Screen", sans-serif;
     h1 {
         text-align: center;
         font-size: 22px;

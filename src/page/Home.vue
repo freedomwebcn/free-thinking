@@ -33,7 +33,7 @@ const jumpRouter = ({ index, isMgz }) => {
     router.push(`/author/${index + 1}`)
     return
   };
-  router.push(`/magazine/${index + 1}`)
+  router.push(`/magazinelist/${index + 1}`)
 }
 
 
