@@ -26,14 +26,10 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-box" :class="{ bgc: !isShow }">
-                <div class="top-box" :class="{ ' van-hairline--bottom': !isShow }">
+            <div class="tab-box" :class="{ bgc: !isShow, 'border-bottom': !isShow }">
+                <div class="top-box">
                     <span>期刊</span>
                     <span>我的收藏</span>
-                </div>
-                <div class="footer-box">
-                    <span>旧发行排序</span>
-                    <span>新发行排序</span>
                 </div>
             </div>
             <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad"
@@ -240,10 +236,12 @@ const blur = () => {
             background-color: #f4f5f7;
         }
 
-
+        &.border-bottom {
+            border-bottom: 1px solid rgb(229, 230, 232);
+        }
 
         .top-box {
-            padding-bottom: 10px;
+            // padding-bottom: 8px;
             padding-left: 15px;
 
             :nth-child(1) {
@@ -251,32 +249,14 @@ const blur = () => {
                 color: rgb(25, 136, 236);
             }
         }
-
-        .footer-box {
-            padding-top: 8px;
-            padding-left: 15px;
-
-
-            &.van-hairline--bottom:after {
-                border-color: rgb(224, 225, 227);
-            }
-
-            :nth-child(1) {
-                color: #1988ec;
-                margin-right: 25px;
-            }
-        }
-
-
     }
-
 
     ul {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 10px;
         justify-items: center;
-        padding: 130px 10px 0 10px;
+        padding: 112px 10px 0 10px;
 
         li {
             width: 105px;
@@ -322,7 +302,7 @@ const blur = () => {
         }
 
         ul {
-            padding-top: 120px
+            padding-top: 100px
         }
     }
 }
