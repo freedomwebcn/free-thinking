@@ -26,6 +26,10 @@
                     </div>
                 </div>
             </div>
+            <div class="tab-box" :class="{ bgc: !isShow, ' van-hairline--bottom': !isShow }">
+                <span class="book-list">期刊</span>
+                <span class="my-fav">我的收藏</span>
+            </div>
             <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad"
                 :immediate-check="false" offset="50">
                 <ul>
@@ -215,13 +219,40 @@ const blur = () => {
         }
     }
 
+    .tab-box {
+        display: flex;
+        position: fixed;
+        width: 375px;
+        padding-top: 65px;
+        padding-bottom: 15px;
+        padding-left: 15px;
+        font-size: 15px;
+        color: rgb(133, 140, 150);
+        z-index: 999;
+
+        &.bgc {
+            background-color: #f4f5f7;
+        }
+
+        .book-list {
+            margin-right: 25px;
+            color: rgb(25, 136, 236);
+        }
+
+        .my-fav {}
+
+        &.van-hairline--bottom:after {
+            border-color: rgb(224, 225, 227);
+        }
+    }
+
 
     ul {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 10px;
         justify-items: center;
-        padding: 60px 10px 0 10px;
+        padding: 112px 10px 0 10px;
 
         li {
             width: 105px;
@@ -262,8 +293,12 @@ const blur = () => {
     }
 
     @media screen and (min-width: 540px) {
+        .tab-box {
+            padding-top: 52px;
+        }
+
         ul {
-            padding-top: 50px
+            padding-top: 100px
         }
     }
 }
