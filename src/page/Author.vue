@@ -13,7 +13,7 @@
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-console.log(route.params.id);  
+// console.log(route.params.id);  
 </script>
 
 <style lang="less" scoped>

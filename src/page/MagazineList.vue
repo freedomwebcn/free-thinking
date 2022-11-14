@@ -28,12 +28,12 @@
             </div>
             <div class="tab-box" :class="{ bgc: !isShow, 'border-bottom': !isShow }">
                 <div class="top-box">
-                    <span>期刊</span>
-                    <span>我的收藏</span>
+                    <span :class="{ active: toggle }" @click="toggle = true">期刊</span>
+                    <span :class="{ active: !toggle }" @click="toggle = false">我的收藏</span>
                 </div>
             </div>
             <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad"
-                :immediate-check="false" offset="50">
+                :immediate-check="false" offset="50" v-show="toggle">
                 <ul>
                     <li v-for="item in result[0]" :key="item.publishDate"
                         @click="$router.push(`/magazineInfo/${item.publishDate}`)">
@@ -45,6 +45,8 @@
                     </li>
                 </ul>
             </van-list>
+
+            <div style="padding-top: 102px" v-show="!toggle">暂无收藏</div>
         </div>
         <transition name="van-fade">
             <div class="page-cover" v-show="isShow"></div>
@@ -63,6 +65,7 @@ const formatData = []
 const result = ref([])
 const isShow = ref(false)
 const shape = ref("round")
+const toggle = ref(true)
 
 magazineList.forEach(item => {
     item.pubIssue.forEach(issueObj => {
@@ -237,7 +240,7 @@ const blur = () => {
         }
 
         &.border-bottom {
-            border-bottom: 1px solid rgb(229, 230, 232);
+            border-bottom: 1px solid rgb(235, 234, 234);
         }
 
         .top-box {
@@ -246,7 +249,12 @@ const blur = () => {
 
             :nth-child(1) {
                 margin-right: 25px;
-                color: rgb(25, 136, 236);
+            }
+
+            span {
+                &.active {
+                    color: rgb(25, 136, 236);
+                }
             }
         }
     }
