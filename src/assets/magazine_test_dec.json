@@ -1,162 +1,272 @@
 {
-   
+    "1999": [
+        {
+            "issue": "10期",
+            "dec": [
+                {
+                    "title": "亲历记",
+                    "dec_content": [
+                        {
+                            "dec_name": "开国大典回顾",
+                            "author": "钱听涛"
+                        },
+                        {
+                            "dec_name": "回忆开国大典实况广播",
+                            "author": "杨兆麟"
+                        }
+                    ]
+                },
+                {
+                    "title": "春秋笔",
+                    "dec_content": [
+                        {
+                            "dec_name": "“我给大家行个脱帽礼”",
+                            "author": "林玉华"
+                        },
+                        {
+                            "dec_name": "打扫家门：新中国封闭妓院",
+                            "author": "白去涛"
+                        },
+                        {
+                            "dec_name": "“穷过渡”的最后挣扎",
+                            "author": "陈大斌"
+                        },
+                        {
+                            "dec_name": "阎锡山从联共抗日到联日反共",
+                            "author": "陈应谦"
+                        }
+                    ]
+                },
+                {
+                    "title": "求实篇",
+                    "dec_content": [
+                        {
+                            "dec_name": "毛泽东、吴晗与《朱元璋传》",
+                            "author": "苏双碧"
+                        },
+                        {
+                            "dec_name": "林彪与个人崇拜",
+                            "author": "冯建辉"
+                        }
+                    ]
+                },
+                {
+                    "title": "人海浪",
+                    "dec_content": [
+                        {
+                            "dec_name": "语言学音乐学大师赵元任",
+                            "author": "邱健"
+                        },
+                        {
+                            "dec_name": "汤佩松院士的境遇与抱负",
+                            "author": "毕列爵"
+                        },
+                        {
+                            "dec_name": "新乡起义背后的生死情谊",
+                            "author": "陈泓"
+                        }
+                    ]
+                },
+                {
+                    "title": "法制苑",
+                    "dec_content": [
+                        {
+                            "dec_name": "香港税务局长未避嫌遭解聘始未",
+                            "author": "萧徐"
+                        }
+                    ]
+                },
+                {
+                    "title": "赤子心",
+                    "dec_content": [
+                        {
+                            "dec_name": "遥望神州的太平洋孤岛战俘",
+                            "author": "张泽石"
+                        }
+                    ]
+                },
+                {
+                    "title": "群言堂",
+                    "dec_content": [
+                        {
+                            "dec_name": "“五四”前后鲁迅的民主、科学思想",
+                            "author": "汪京"
+                        },
+                        {
+                            "dec_name": "滴泪是金",
+                            "author": "杜导正"
+                        }
+                    ]
+                },
+                {
+                    "title": "两岸情",
+                    "dec_content": [
+                        {
+                            "dec_name": "萧乾与林海音的“京味”之交",
+                            "author": "何标"
+                        }
+                    ]
+                },
+                {
+                    "title": "英杰谱",
+                    "dec_content": [
+                        {
+                            "dec_name": "铁骨将军陈外欧",
+                            "author": "王宇明"
+                        },
+                        {
+                            "dec_name": "“自祭联”不幸成谶语",
+                            "author": "孟亦奇"
+                        }
+                    ]
+                },
+                {
+                    "title": "文荟苑",
+                    "dec_content": [
+                        {
+                            "dec_name": "甲骨文发现一百年",
+                            "author": "王兆麟"
+                        }
+                    ]
+                },
+                {
+                    "title": "古镜台",
+                    "dec_content": [
+                        {
+                            "dec_name": "义和团的悲剧",
+                            "author": "雷颐"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
     "2000": [
         {
             "issue": "01期",
             "dec": [
                 {
-                    "illustrate": "开篇",
+                    "title": "开篇",
                     "dec_content": [
                         {
-                            "title": "志存高远站在时代前列",
-                            "author": "[本刊 编辑部]"
+                            "dec_name": "志存高远站在时代前列",
+                            "author": "本刊 编辑部"
                         }
                     ]
                 },
                 {
-                    "illustrate": "期望与祝愿",
+                    "title": "期望与祝愿",
                     "dec_content": [
                         {
-                            "title": "崇尚真实 崇尚独立",
-                            "author": "[于光远]"
+                            "dec_name": "崇尚真实 崇尚独立",
+                            "author": "于光远"
                         },
                         {
-                            "title": "迎接新世纪要四讲",
-                            "author": "[李锐]"
+                            "dec_name": "迎接新世纪要四讲",
+                            "author": "李锐"
                         },
                         {
-                            "title": "我理解的正面宣传",
-                            "author": "[李庄]"
+                            "dec_name": "我理解的正面宣传",
+                            "author": "李庄"
                         },
                         {
-                            "title": "为“依法治国”多出力",
-                            "author": "[李普]"
+                            "dec_name": "为“依法治国”多出力",
+                            "author": "李普"
                         },
                         {
-                            "title": "有哪些文章可做?",
-                            "author": "[曾彦修]"
+                            "dec_name": "有哪些文章可做?",
+                            "author": "曾彦修"
                         },
                         {
-                            "title": "不懈地批判封建主义",
-                            "author": [
-                                "苏双碧"
-                            ]
+                            "dec_name": "不懈地批判封建主义",
+                            "author": "苏双碧"
                         }
                     ]
                 },
                 {
-                    "illustrate": "英杰谱",
+                    "title": "英杰谱",
                     "dec_content": [
                         {
-                            "title": "正直敢言的黄克诚的命运  ",
-                            "author": [
-                                "朱振友",
-                                "赵白芦",
-                                "胥要平",
-                                "张广华"
-                            ]
+                            "dec_name": "正直敢言的黄克诚的命运  ",
+                            "author": "朱振友/赵白芦/胥要平/张广华"
                         }
                     ]
                 },
                 {
-                    "illustrate": "春秋笔",
+                    "title": "春秋笔",
                     "dec_content": [
                         {
-                            "title": "“大跃进”席卷神州周恩来险些辞职",
-                            "author": [
-                                "杨明伟"
-                            ]
+                            "dec_name": "“大跃进”席卷神州周恩来险些辞职",
+                            "author": "杨明伟"
                         },
                         {
-                            "title": "令人等赞叹的生物学家“陆大傻子”",
-                            "author": [
-                                "叶笃庄"
-                            ]
+                            "dec_name": "令人等赞叹的生物学家“陆大傻子”",
+                            "author": "叶笃庄"
                         },
                         {
-                            "title": "大邱庄“庄主”禹作敏兴衰谜",
-                            "author": [
-                                "范银怀"
-                            ]
+                            "dec_name": "大邱庄“庄主”禹作敏兴衰谜",
+                            "author": "范银怀"
                         }
                     ]
                 },
                 {
-                    "illustrate": "亲历记",
+                    "title": "亲历记",
                     "dec_content": [
                         {
-                            "title": "陈伯达与小站“四清”",
-                            "author": [
-                                "刘晋峰"
-                            ]
+                            "dec_name": "陈伯达与小站“四清”",
+                            "author": "刘晋峰"
                         }
                     ]
                 },
                 {
-                    "illustrate": "文荟园",
+                    "title": "文荟园",
                     "dec_content": [
                         {
-                            "title": "从小山村走出的文坛家叶君健",
-                            "author": [
-                                "邱健"
-                            ]
+                            "dec_name": "从小山村走出的文坛家叶君健",
+                            "author": "邱健"
                         }
                     ]
                 },
                 {
-                    "illustrate": "人海浪",
+                    "title": "人海浪",
                     "dec_content": [
                         {
-                            "title": "《解放日报》的“政治错误”与恽逸群的厄运",
-                            "author": [
-                                "刘小清"
-                            ]
+                            "dec_name": "《解放日报》的“政治错误”与恽逸群的厄运",
+                            "author": "刘小清"
                         },
                         {
-                            "title": "胡均鹤在谍报漩涡中浮沉",
-                            "author": [
-                                "尹骐"
-                            ]
+                            "dec_name": "胡均鹤在谍报漩涡中浮沉",
+                            "author": "尹骐"
                         },
                         {
-                            "title": "胡适在风雨飘摇的旧北大",
-                            "author": [
-                                "胡明"
-                            ]
+                            "dec_name": "胡适在风雨飘摇的旧北大",
+                            "author": "胡明"
                         },
                         {
-                            "title": "说长道短刘师培",
-                            "author": [
-                                "陈洁"
-                            ]
+                            "dec_name": "说长道短刘师培",
+                            "author": "陈洁"
                         }
                     ]
                 },
                 {
-                    "illustrate": "遗闻录",
+                    "title": "遗闻录",
                     "dec_content": [
                         {
-                            "title": "叔倒争霸：四川二刘之战  ",
-                            "author": [
-                                "贾国雄"
-                            ]
+                            "dec_name": "叔倒争霸：四川二刘之战  ",
+                            "author": "贾国雄"
                         }
                     ]
                 },
                 {
-                    "illustrate": "古镜台",
+                    "title": "古镜台",
                     "dec_content": [
                         {
-                            "title": "内乡县衙：旧政权结构的缩影",
-                            "author": [
-                                "冯兴阁"
-                            ]
+                            "dec_name": "内乡县衙：旧政权结构的缩影",
+                            "author": "冯兴阁"
                         },
                         {
-                            "title": "晏氏转型",
-                            "author": [
-                                "吴思"
-                            ]
+                            "dec_name": "晏氏转型",
+                            "author": "吴思"
                         }
                     ]
                 }
