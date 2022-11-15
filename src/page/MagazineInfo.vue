@@ -17,6 +17,7 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import magazineDirectoryList from '@/assets/magazine_test_dec.json';
 
