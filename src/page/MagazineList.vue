@@ -77,17 +77,18 @@ let scrollPre;
 let scrollNet;
 
 onActivated(() => scrollPage());
+
 onMounted(() => {
   containerRef.value.addEventListener('scroll', (e) => (toggle.value ? (scrollPre = e.target.scrollTop) : (scrollNet = e.target.scrollTop)));
 });
+
 let changeToggleStatus = (val) => {
   toggle.value = val;
   nextTick(() => scrollPage());
 };
 
-const scrollPage = () => {
-  toggle.value ? (containerRef.value.scrollTop = scrollPre) : (containerRef.value.scrollTop = scrollNet);
-};
+const scrollPage = () => (toggle.value ? (containerRef.value.scrollTop = scrollPre) : (containerRef.value.scrollTop = scrollNet));
+
 // 格式化json数据
 magazineList.forEach((item) => {
   item.pubIssue.forEach((issueObj) => {
