@@ -17,15 +17,18 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onActivated } from 'vue';
 import { useRoute } from 'vue-router';
 import magazineDirectoryList from '@/assets/magazine_test_dec.json';
 
-const route = useRoute();
 const directoryList = ref([]);
-const [year, issue] = route.params.pubid.slice(0, -1).split('年');
-const { directory } = magazineDirectoryList[year].find((directoryItem) => directoryItem.issue.slice(0, -1) == issue);
-directoryList.value = directory;
+
+onActivated(() => {
+  const route = useRoute();
+  const [year, issue] = route.params.pubid.slice(0, -1).split('年');
+  const { directory } = magazineDirectoryList[year].find((directoryItem) => directoryItem.issue.slice(0, -1) == issue);
+  directoryList.value = directory;
+});
 </script>
 
 <style lang="less" scoped>
