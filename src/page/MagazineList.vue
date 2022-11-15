@@ -54,7 +54,6 @@
         </ul>
       </div>
     </div>
-
     <transition name="van-fade">
       <div class="overlay" v-if="isShow"></div>
     </transition>
@@ -90,6 +89,7 @@ let changeToggleStatus = (val) => {
   nextTick(() => (toggle.value ? (containerRef.value.scrollTop = scrollPre) : (containerRef.value.scrollTop = scrollNet)));
 };
 
+// 格式化json数据
 magazineList.forEach((item) => {
   item.pubIssue.forEach((issueObj) => {
     const { pubYear } = item;

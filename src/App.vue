@@ -2,7 +2,7 @@
   <div class="app">
     <router-view v-slot="{ Component }">
       <keep-alive :exclude="['MagazineInfo', 'Author']">
-        <component :is="Component" />
+        <component :is="Component" :key="$route.name" />
       </keep-alive>
     </router-view>
   </div>
