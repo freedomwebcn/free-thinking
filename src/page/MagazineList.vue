@@ -56,7 +56,7 @@
     </div>
 
     <transition name="van-fade">
-      <div class="page-cover" v-if="isShow"></div>
+      <div class="overlay" v-if="isShow"></div>
     </transition>
   </van-config-provider>
 </template>
@@ -135,7 +135,7 @@ const blur = () => {
 </script>
 
 <style lang="less" scoped>
-.page-cover {
+.overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -330,9 +330,7 @@ const blur = () => {
     .tab-box {
       padding-top: 52px;
     }
-    ul {
-      padding-top: 100px;
-    }
+    .magazine-list-content,
     .favourite {
       padding-top: 99px;
     }

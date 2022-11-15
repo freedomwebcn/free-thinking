@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <router-view v-slot="{ Component }">
-      <keep-alive>
+      <keep-alive :exclude="['MagazineInfo', 'Author']">
         <component :is="Component" />
       </keep-alive>
     </router-view>
