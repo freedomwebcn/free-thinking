@@ -76,19 +76,18 @@ const toggle = ref(true);
 let scrollPre;
 let scrollNet;
 
-onActivated(() => {
-  // 调用时机为首次挂载
-  // 以及每次从缓存中被重新插入时
-  containerRef.value.scrollTop = scrollPre;
-});
+onActivated(() => scrollPage());
 onMounted(() => {
   containerRef.value.addEventListener('scroll', (e) => (toggle.value ? (scrollPre = e.target.scrollTop) : (scrollNet = e.target.scrollTop)));
 });
 let changeToggleStatus = (val) => {
   toggle.value = val;
-  nextTick(() => (toggle.value ? (containerRef.value.scrollTop = scrollPre) : (containerRef.value.scrollTop = scrollNet)));
+  nextTick(() => scrollPage());
 };
 
+const scrollPage = () => {
+  toggle.value ? (containerRef.value.scrollTop = scrollPre) : (containerRef.value.scrollTop = scrollNet);
+};
 // 格式化json数据
 magazineList.forEach((item) => {
   item.pubIssue.forEach((issueObj) => {

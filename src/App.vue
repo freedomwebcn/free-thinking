@@ -8,8 +8,6 @@
   </div>
 </template>
 
-<script setup></script>
-
 <style lang="less" scoped>
 .app {
   width: 375px;

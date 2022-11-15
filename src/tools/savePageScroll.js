@@ -13,8 +13,4 @@ export function savePageScroll(pageRef) {
     pageRef.value.scrollTop = scrollVal.value;
     console.log('进入组件');
   });
-
-  return {
-    scrollVal
-  };
 }
