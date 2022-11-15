@@ -1,14 +1,14 @@
 <template>
 	<div class="container">
 		<h1>本期目录</h1>
-		<div class="dec-content">
+		<div class="directory-container">
 			<ul>
-				<li v-for="item in decList" :key="item.title">
+				<li v-for="directoryItem in directoryList" :key="directoryItem.title">
 					<div class="title van-hairline--bottom">
-						<h2>{{ item.title }}</h2>
+						<h2>{{ directoryItem.title }}</h2>
 					</div>
-					<div class="van-hairline--bottom common dec-name" v-for="content in item.dec_content">
-						{{ content.dec_name }}
+					<div class="van-hairline--bottom common dec-name" v-for="content in directoryItem.directoryContent">
+						{{ content.dct_name }}
 					</div>
 				</li>
 			</ul>
@@ -18,23 +18,11 @@
 
 <script setup>
 import { useRoute } from "vue-router";
-import { ref } from "vue";
+import magazineDirectoryList from "@/assets/magazine_test_dec.json";
 
-import mgz_dec from "@/assets/magazine_test_dec.json";
 const route = useRoute();
-const ids = route.params.pubid.slice(0, -1).split("年");
-const year = ids[0];
-const issue = ids[1];
-
-let decList = ref([]);
-
-mgz_dec[year].some(item => {
-	if (item.issue.slice(0, -1) == issue) {
-		decList.value = item.dec;
-		return true;
-	}
-});
-console.log(mgz_dec[year]);
+const [ year, issue ] = route.params.pubid.slice(0, -1).split("年");
+const { directory:directoryList=[] } = magazineDirectoryList[year].find(directoryItem =>  directoryItem.issue.slice(0, -1) == issue);
 </script>
 
 <style lang="less" scoped>
@@ -49,7 +37,7 @@ console.log(mgz_dec[year]);
 		background-size: auto 61px;
 		font-size: 16px;
 	}
-	.dec-content {
+	.directory-container {
 		padding: 0 16px;
 		ul {
 			font-size: 15px;

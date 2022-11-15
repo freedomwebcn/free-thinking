@@ -1,402 +1,481 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <!-- <link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css">
     <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+  </head>
 
-</head>
-
-<style>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
     .prograss {
-        background: rgb(34, 93, 221);
-        position: fixed;
-        z-index: 1031;
-        top: 0;
-        left: 0;
-        height: 2px;
+      background: rgb(34, 93, 221);
+      position: fixed;
+      z-index: 1031;
+      top: 0;
+      left: 0;
+      height: 2px;
     }
 
-
     .prograss .peg {
-        position: absolute;
-        right: 0px;
-        width: 100px;
-        height: 100%;
-        box-shadow: 0 0 10px rgb(34, 93, 221), 0 0 5px rgb(34, 93, 221);
-        opacity: 1.0;
-        transform: rotate(3deg) translate(0px, -4px);
+      position: absolute;
+      right: 0px;
+      width: 100px;
+      height: 100%;
+      box-shadow: 0 0 10px rgb(34, 93, 221), 0 0 5px rgb(34, 93, 221);
+      opacity: 1;
+      transform: rotate(3deg) translate(0px, -4px);
     }
 
     ul li {
-        width: 100%;
-        height: 500px;
+      width: 100%;
+      height: 500px;
     }
 
-</style>
+    .outer-box {
+      width: 600px;
+      height: 800px;
+      margin: 0 auto;
+      overflow: hidden;
+      overflow-y: scroll;
+      background-color: rgb(43, 198, 226);
+    }
 
-<body>
-    <div class="prograss">
-        <div class="peg"></div>
+    .test-box {
+      width: 1200px;
+      display: flex;
+    }
+    .test-box .inner-box {
+      width: 600px;
+      height: 1000px;
+      flex: none;
+      background-color: blueviolet;
+    }
+    .test-box .inner2-box {
+      width: 600px;
+      height: 1000px;
+      background-color: rgb(248, 172, 8);
+    }
+  </style>
+
+  <body>
+    <div class="outer-box">
+      <div class="test-box">
+        <div class="inner-box">
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+          <div>4</div>
+          <div>5</div>
+        </div>
+        <div class="inner2-box">
+          <div>4</div>
+          <div>5</div>
+          <div>6</div>
+          <div>7</div>
+          <div>8</div>
+        </div>
+      </div>
     </div>
 
+    <button id="btn1">pre</button>
+    <button id="btn2">next</button>
+
+    <div class="prograss">
+      <div class="peg"></div>
+    </div>
 
     <ul>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>1</li>
-        <li>2</li>
-        <li>8</li>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>1</li>
+      <li>2</li>
+      <li>8</li>
     </ul>
     <script>
-        document.addEventListener('scroll', function () {
-            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-            var scrollHeight = document.documentElement.scrollHeight
-            var clientHeight = document.documentElement.clientHeight
-            document.querySelector('.prograss').style.width = +scrollTop / (scrollHeight - clientHeight)
-                .toFixed(2) * 100 + "%"
-        })
+      const btn1 = document.querySelector('#btn1');
+      const btn2 = document.querySelector('#btn2');
+      const testBox = document.querySelector('.test-box');
+      const outerBox = document.querySelector('.outer-box');
 
-        //========================
+      let flag = true;
+      let scrollPre;
+      let scrollNet;
+      btn1.addEventListener('click', function () {
+        flag = true;
+        testBox.style.transform = 'translate(0)';
+        outerBox.scrollTop = scrollPre;
+        console.log(333);
+      });
+      btn2.addEventListener('click', function () {
+        flag = false;
+        outerBox.scrollTop = scrollNet;
 
+        testBox.style.transform = 'translate(-600px)';
+        console.log(333);
+      });
 
-
-        const data = [{
-            "pubYear": "1991年",
-            "pubIssue": [{
-                "issue": "01期",
-                "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199101.jpg"
-            },
-            {
-                "issue": "02期",
-                "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199102.jpg"
-            },
-            {
-                "issue": "03期",
-                "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199103.jpg"
-            }
-            ]
-        },
-        {
-            "pubYear": "1992年",
-            "pubIssue": [{
-                "issue": "01期",
-                "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199201.jpg"
-            },
-            {
-                "issue": "02期",
-                "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199202.jpg"
-            },
-            {
-                "issue": "03期",
-                "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199203.jpg"
-            },
-            {
-                "issue": "04期",
-                "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199204.jpg"
-            },
-            {
-                "issue": "05期",
-                "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199205.jpg"
-            },
-            {
-                "issue": "06期",
-                "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199206.jpg"
-            }
-            ]
-        },
-        {
-            "pubYear": "1993年",
-            "pubIssue": [{
-                "issue": "01期",
-                "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199301.jpg"
-            },
-            {
-                "issue": "02期",
-                "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199302.jpg"
-            },
-            {
-                "issue": "03期",
-                "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199303.jpg"
-            },
-            {
-                "issue": "04期",
-                "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199304.jpg"
-            },
-            {
-                "issue": "05期",
-                "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199305.jpg"
-            },
-            {
-                "issue": "06期",
-                "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199306.jpg"
-            },
-            {
-                "issue": "07期",
-                "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199307.jpg"
-            },
-            {
-                "issue": "08期",
-                "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199308.jpg"
-            },
-            {
-                "issue": "09期",
-                "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199309.jpg"
-            },
-            {
-                "issue": "10期",
-                "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199310.jpg"
-            },
-            {
-                "issue": "11期",
-                "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199311.jpg"
-            },
-            {
-                "issue": "12期",
-                "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199312.jpg"
-            }
-            ]
+      outerBox.addEventListener('scroll', function (e) {
+        if (flag) {
+          scrollPre = e.target.scrollTop;
+        } else {
+          scrollNet = e.target.scrollTop;
         }
-        ]
 
-        // const arr = []
-        // const result = []
-        // data.forEach((item, i) => {
-        //     item.pubIssue.forEach((issueObj,index) => {
-        //         const {pubYear} = item
-        //         const { issue, img} = issueObj
-        //         arr.push({publishDate: pubYear + issue, img})
-        //     })
-        // })
+        console.log(e.target.scrollTop);
+      });
+      //   document.addEventListener('scroll', function () {
+      //     var scrollTop =
+      //       document.documentElement.scrollTop || document.body.scrollTop;
+      //     var scrollHeight = document.documentElement.scrollHeight;
+      //     var clientHeight = document.documentElement.clientHeight;
+      //     document.querySelector('.prograss').style.width =
+      //       (+scrollTop / (scrollHeight - clientHeight).toFixed(2)) * 100 + '%';
+      //   });
 
-        // result.push(_.chunk(arr,12))
-        // console.log(result);
-//==================================
-        // let mgz_dec = [
-        //     {
-        //         "pubYear": "2001年",
-        //         "pubIssue": []
-        //     },
-        //     {
-        //         "pubYear": "2000年",
-        //         "pubIssue": [
-        //             {
-        //                 "issue": "01期",
-        //                 "dec": [
-        //                     {
-        //                         "illustrate": "开篇",
-        //                         "dec_content": [
-        //                             {
-        //                                 "title": "志存高远站在时代前列",
-        //                                 "author": "[本刊 编辑部]"
-        //                             }
-        //                         ]
-        //                     },
-        //                     {
-        //                         "illustrate": "期望与祝愿",
-        //                         "dec_content": [
-        //                             {
-        //                                 "title": "崇尚真实 崇尚独立",
-        //                                 "author": "[于光远]"
-        //                             },
-        //                             {
-        //                                 "title": "迎接新世纪要四讲",
-        //                                 "author": "[李锐]"
-        //                             },
-        //                             {
-        //                                 "title": "我理解的正面宣传",
-        //                                 "author": "[李庄]"
-        //                             },
-        //                             {
-        //                                 "title": "为“依法治国”多出力",
-        //                                 "author": "[李普]"
-        //                             },
-        //                             {
-        //                                 "title": "有哪些文章可做?",
-        //                                 "author": "[曾彦修]"
-        //                             },
-        //                             {
-        //                                 "title": "不懈地批判封建主义",
-        //                                 "author": [
-        //                                     "苏双碧"
-        //                                 ]
-        //                             }
-        //                         ]
-        //                     },
-        //                     {
-        //                         "illustrate": "英杰谱",
-        //                         "dec_content": [
-        //                             {
-        //                                 "title": "正直敢言的黄克诚的命运  ",
-        //                                 "author": [
-        //                                     "朱振友",
-        //                                     "赵白芦",
-        //                                     "胥要平",
-        //                                     "张广华"
-        //                                 ]
-        //                             }
-        //                         ]
-        //                     },
-        //                     {
-        //                         "illustrate": "春秋笔",
-        //                         "dec_content": [
-        //                             {
-        //                                 "title": "“大跃进”席卷神州周恩来险些辞职",
-        //                                 "author": [
-        //                                     "杨明伟"
-        //                                 ]
-        //                             },
-        //                             {
-        //                                 "title": "令人等赞叹的生物学家“陆大傻子”",
-        //                                 "author": [
-        //                                     "叶笃庄"
-        //                                 ]
-        //                             },
-        //                             {
-        //                                 "title": "大邱庄“庄主”禹作敏兴衰谜",
-        //                                 "author": [
-        //                                     "范银怀"
-        //                                 ]
-        //                             }
-        //                         ]
-        //                     },
-        //                     {
-        //                         "illustrate": "亲历记",
-        //                         "dec_content": [
-        //                             {
-        //                                 "title": "陈伯达与小站“四清”",
-        //                                 "author": [
-        //                                     "刘晋峰"
-        //                                 ]
-        //                             }
-        //                         ]
-        //                     },
-        //                     {
-        //                         "illustrate": "文荟园",
-        //                         "dec_content": [
-        //                             {
-        //                                 "title": "从小山村走出的文坛家叶君健",
-        //                                 "author": [
-        //                                     "邱健"
-        //                                 ]
-        //                             }
-        //                         ]
-        //                     },
-        //                     {
-        //                         "illustrate": "人海浪",
-        //                         "dec_content": [
-        //                             {
-        //                                 "title": "《解放日报》的“政治错误”与恽逸群的厄运",
-        //                                 "author": [
-        //                                     "刘小清"
-        //                                 ]
-        //                             },
-        //                             {
-        //                                 "title": "胡均鹤在谍报漩涡中浮沉",
-        //                                 "author": [
-        //                                     "尹骐"
-        //                                 ]
-        //                             },
-        //                             {
-        //                                 "title": "胡适在风雨飘摇的旧北大",
-        //                                 "author": [
-        //                                     "胡明"
-        //                                 ]
-        //                             },
-        //                             {
-        //                                 "title": "说长道短刘师培",
-        //                                 "author": [
-        //                                     "陈洁"
-        //                                 ]
-        //                             }
-        //                         ]
-        //                     },
-        //                     {
-        //                         "illustrate": "遗闻录",
-        //                         "dec_content": [
-        //                             {
-        //                                 "title": "叔倒争霸：四川二刘之战  ",
-        //                                 "author": [
-        //                                     "贾国雄"
-        //                                 ]
-        //                             }
-        //                         ]
-        //                     },
-        //                     {
-        //                         "illustrate": "古镜台",
-        //                         "dec_content": [
-        //                             {
-        //                                 "title": "内乡县衙：旧政权结构的缩影",
-        //                                 "author": [
-        //                                     "冯兴阁"
-        //                                 ]
-        //                             },
-        //                             {
-        //                                 "title": "晏氏转型",
-        //                                 "author": [
-        //                                     "吴思"
-        //                                 ]
-        //                             }
-        //                         ]
-        //                     }
-        //                 ]
-        //             },
-        //             {
-        //                 "issue": "02期",
-        //                 "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199102.jpg"
-        //             },
-        //             {
-        //                 "issue": "03期",
-        //                 "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199103.jpg"
-        //             }
-        //         ]
-        //     }
-        // ]
-        // const ids = ["2000", "01"]
-        // let test = []
-        // mgz_dec.some((item) => {
-        //     if (ids[0] == item.pubYear.slice(0, -1)) {
-        //         item.pubIssue.some(issueObj => {
-        //             if (ids[1] == issueObj.issue.slice(0, -1)) {
-        //                 test = issueObj.dec
-        //                 return true
-        //             }
-        //         });
-        //     }
-        // })
+      //========================
 
-        // mgz_dec.some((item) => {
-        //     if (ids[0] == item.pubYear.slice(0, -1)) {
-        //         getDecList(item)
-        //         return true
-        //     }
-        // })
+      const data = [
+        {
+          pubYear: '1991年',
+          pubIssue: [
+            {
+              issue: '01期',
+              img: 'http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199101.jpg'
+            },
+            {
+              issue: '02期',
+              img: 'http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199102.jpg'
+            },
+            {
+              issue: '03期',
+              img: 'http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199103.jpg'
+            }
+          ]
+        },
+        {
+          pubYear: '1992年',
+          pubIssue: [
+            {
+              issue: '01期',
+              img: 'http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199201.jpg'
+            },
+            {
+              issue: '02期',
+              img: 'http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199202.jpg'
+            },
+            {
+              issue: '03期',
+              img: 'http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199203.jpg'
+            },
+            {
+              issue: '04期',
+              img: 'http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199204.jpg'
+            },
+            {
+              issue: '05期',
+              img: 'http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199205.jpg'
+            },
+            {
+              issue: '06期',
+              img: 'http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199206.jpg'
+            }
+          ]
+        },
+        {
+          pubYear: '1993年',
+          pubIssue: [
+            {
+              issue: '01期',
+              img: 'http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199301.jpg'
+            },
+            {
+              issue: '02期',
+              img: 'http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199302.jpg'
+            },
+            {
+              issue: '03期',
+              img: 'http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199303.jpg'
+            },
+            {
+              issue: '04期',
+              img: 'http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199304.jpg'
+            },
+            {
+              issue: '05期',
+              img: 'http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199305.jpg'
+            },
+            {
+              issue: '06期',
+              img: 'http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199306.jpg'
+            },
+            {
+              issue: '07期',
+              img: 'http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199307.jpg'
+            },
+            {
+              issue: '08期',
+              img: 'http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199308.jpg'
+            },
+            {
+              issue: '09期',
+              img: 'http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199309.jpg'
+            },
+            {
+              issue: '10期',
+              img: 'http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199310.jpg'
+            },
+            {
+              issue: '11期',
+              img: 'http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199311.jpg'
+            },
+            {
+              issue: '12期',
+              img: 'http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199312.jpg'
+            }
+          ]
+        }
+      ];
 
-        // function getDecList(item) {
-        //     item.pubIssue.some(issueObj => {
-        //         if (ids[1] == issueObj.issue.slice(0, -1)) {
-        //             test = issueObj.dec
-        //             return true
-        //         }
-        //     });
-        // }
-//==============================================
+      // const arr = []
+      // const result = []
+      // data.forEach((item, i) => {
+      //     item.pubIssue.forEach((issueObj,index) => {
+      //         const {pubYear} = item
+      //         const { issue, img} = issueObj
+      //         arr.push({publishDate: pubYear + issue, img})
+      //     })
+      // })
+
+      // result.push(_.chunk(arr,12))
+      // console.log(result);
+      //==================================
+      // let mgz_dec = [
+      //     {
+      //         "pubYear": "2001年",
+      //         "pubIssue": []
+      //     },
+      //     {
+      //         "pubYear": "2000年",
+      //         "pubIssue": [
+      //             {
+      //                 "issue": "01期",
+      //                 "dec": [
+      //                     {
+      //                         "illustrate": "开篇",
+      //                         "dec_content": [
+      //                             {
+      //                                 "title": "志存高远站在时代前列",
+      //                                 "author": "[本刊 编辑部]"
+      //                             }
+      //                         ]
+      //                     },
+      //                     {
+      //                         "illustrate": "期望与祝愿",
+      //                         "dec_content": [
+      //                             {
+      //                                 "title": "崇尚真实 崇尚独立",
+      //                                 "author": "[于光远]"
+      //                             },
+      //                             {
+      //                                 "title": "迎接新世纪要四讲",
+      //                                 "author": "[李锐]"
+      //                             },
+      //                             {
+      //                                 "title": "我理解的正面宣传",
+      //                                 "author": "[李庄]"
+      //                             },
+      //                             {
+      //                                 "title": "为“依法治国”多出力",
+      //                                 "author": "[李普]"
+      //                             },
+      //                             {
+      //                                 "title": "有哪些文章可做?",
+      //                                 "author": "[曾彦修]"
+      //                             },
+      //                             {
+      //                                 "title": "不懈地批判封建主义",
+      //                                 "author": [
+      //                                     "苏双碧"
+      //                                 ]
+      //                             }
+      //                         ]
+      //                     },
+      //                     {
+      //                         "illustrate": "英杰谱",
+      //                         "dec_content": [
+      //                             {
+      //                                 "title": "正直敢言的黄克诚的命运  ",
+      //                                 "author": [
+      //                                     "朱振友",
+      //                                     "赵白芦",
+      //                                     "胥要平",
+      //                                     "张广华"
+      //                                 ]
+      //                             }
+      //                         ]
+      //                     },
+      //                     {
+      //                         "illustrate": "春秋笔",
+      //                         "dec_content": [
+      //                             {
+      //                                 "title": "“大跃进”席卷神州周恩来险些辞职",
+      //                                 "author": [
+      //                                     "杨明伟"
+      //                                 ]
+      //                             },
+      //                             {
+      //                                 "title": "令人等赞叹的生物学家“陆大傻子”",
+      //                                 "author": [
+      //                                     "叶笃庄"
+      //                                 ]
+      //                             },
+      //                             {
+      //                                 "title": "大邱庄“庄主”禹作敏兴衰谜",
+      //                                 "author": [
+      //                                     "范银怀"
+      //                                 ]
+      //                             }
+      //                         ]
+      //                     },
+      //                     {
+      //                         "illustrate": "亲历记",
+      //                         "dec_content": [
+      //                             {
+      //                                 "title": "陈伯达与小站“四清”",
+      //                                 "author": [
+      //                                     "刘晋峰"
+      //                                 ]
+      //                             }
+      //                         ]
+      //                     },
+      //                     {
+      //                         "illustrate": "文荟园",
+      //                         "dec_content": [
+      //                             {
+      //                                 "title": "从小山村走出的文坛家叶君健",
+      //                                 "author": [
+      //                                     "邱健"
+      //                                 ]
+      //                             }
+      //                         ]
+      //                     },
+      //                     {
+      //                         "illustrate": "人海浪",
+      //                         "dec_content": [
+      //                             {
+      //                                 "title": "《解放日报》的“政治错误”与恽逸群的厄运",
+      //                                 "author": [
+      //                                     "刘小清"
+      //                                 ]
+      //                             },
+      //                             {
+      //                                 "title": "胡均鹤在谍报漩涡中浮沉",
+      //                                 "author": [
+      //                                     "尹骐"
+      //                                 ]
+      //                             },
+      //                             {
+      //                                 "title": "胡适在风雨飘摇的旧北大",
+      //                                 "author": [
+      //                                     "胡明"
+      //                                 ]
+      //                             },
+      //                             {
+      //                                 "title": "说长道短刘师培",
+      //                                 "author": [
+      //                                     "陈洁"
+      //                                 ]
+      //                             }
+      //                         ]
+      //                     },
+      //                     {
+      //                         "illustrate": "遗闻录",
+      //                         "dec_content": [
+      //                             {
+      //                                 "title": "叔倒争霸：四川二刘之战  ",
+      //                                 "author": [
+      //                                     "贾国雄"
+      //                                 ]
+      //                             }
+      //                         ]
+      //                     },
+      //                     {
+      //                         "illustrate": "古镜台",
+      //                         "dec_content": [
+      //                             {
+      //                                 "title": "内乡县衙：旧政权结构的缩影",
+      //                                 "author": [
+      //                                     "冯兴阁"
+      //                                 ]
+      //                             },
+      //                             {
+      //                                 "title": "晏氏转型",
+      //                                 "author": [
+      //                                     "吴思"
+      //                                 ]
+      //                             }
+      //                         ]
+      //                     }
+      //                 ]
+      //             },
+      //             {
+      //                 "issue": "02期",
+      //                 "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199102.jpg"
+      //             },
+      //             {
+      //                 "issue": "03期",
+      //                 "img": "http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199103.jpg"
+      //             }
+      //         ]
+      //     }
+      // ]
+      // const ids = ["2000", "01"]
+      // let test = []
+      // mgz_dec.some((item) => {
+      //     if (ids[0] == item.pubYear.slice(0, -1)) {
+      //         item.pubIssue.some(issueObj => {
+      //             if (ids[1] == issueObj.issue.slice(0, -1)) {
+      //                 test = issueObj.dec
+      //                 return true
+      //             }
+      //         });
+      //     }
+      // })
+
+      // mgz_dec.some((item) => {
+      //     if (ids[0] == item.pubYear.slice(0, -1)) {
+      //         getDecList(item)
+      //         return true
+      //     }
+      // })
+
+      // function getDecList(item) {
+      //     item.pubIssue.some(issueObj => {
+      //         if (ids[1] == issueObj.issue.slice(0, -1)) {
+      //             test = issueObj.dec
+      //             return true
+      //         }
+      //     });
+      // }
+      //==============================================
     </script>
-</body>
-
+  </body>
 </html>
