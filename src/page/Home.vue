@@ -16,7 +16,7 @@
                 >期
               </template>
               <template v-else
-                >共<i> {{ item.at_title_list && item.at_title_list.length }} </i>篇文章
+                >共<i> {{ item.at_title_list && item.at_title_list.length >= 999 ? '99+' : item.at_title_list.length }} </i>篇文章
               </template>
             </span>
           </div>
@@ -92,7 +92,7 @@ const jumpRouter = ({ index, isMgz }) => {
           width: 56px;
           vertical-align: bottom;
           object-fit: cover;
-          margin-right: 12px;
+          margin-right: 10px;
           flex: none;
           box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
         }
