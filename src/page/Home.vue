@@ -11,8 +11,13 @@
           <div>
             <span class="author">{{ item.author }}</span>
             <span class="article-total">
-              {{ item.isMgz ? '共' : '' }}
-              <i> {{ item.art_total >= 999 ? '999+' : item.art_total }} </i>{{ item.isMgz ? '期' : '篇文章' }}
+              <template v-if="item.isMgz"
+                >共<i>{{ item.at_total }}</i
+                >期
+              </template>
+              <template v-else
+                >共<i> {{ item.at_title_list && item.at_title_list.length }} </i>篇文章
+              </template>
             </span>
           </div>
         </div>
@@ -23,10 +28,11 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import authorList from '@/assets/author.json';
+import authorList from '@/assets/author';
 
 const homeRef = ref(null);
 const router = useRouter();
+
 const jumpRouter = ({ index, isMgz }) => {
   if (!isMgz) {
     router.push(`/author/${index + 1}`);
@@ -106,7 +112,7 @@ const jumpRouter = ({ index, isMgz }) => {
             font-size: 13px;
             i {
               font-family: din-medium;
-              margin-right: 3px;
+              margin: 0 3px;
             }
           }
         }

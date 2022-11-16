@@ -13,16 +13,15 @@
         </li>
       </ul>
     </div>
-
-    <div class="tips" v-else>
-      <van-empty image="https://fastly.jsdelivr.net/npm/@vant/assets/custom-empty-image.png" image-size="80" description="本期目录还未录入" />
-    </div>
+    <empty descriptionText="本期目录还未录入" v-else />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
+import empty from '@/components/empty.vue';
+
 import magazineDirectoryList from '@/assets/magazine_test_dec.json';
 
 const directoryList = ref([]);
@@ -97,16 +96,6 @@ try {
         }
       }
     }
-  }
-  .tips {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 }
 </style>
