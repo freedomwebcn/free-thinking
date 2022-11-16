@@ -5,20 +5,14 @@
       <span class="iconfont icon-bi icon"></span>
     </h1>
     <ul>
-      <li
-        v-for="(item, index) in authorList"
-        :key="item.pic"
-        @click="jumpRouter({ index, isMgz: item.isMgz })"
-        :class="{ 'is-mgz': item.isMgz }"
-      >
+      <li v-for="(item, index) in authorList" :key="item.pic" @click="jumpRouter({ index, isMgz: item.isMgz })" :class="{ 'is-mgz': item.isMgz }">
         <div class="content">
           <img :src="item.pic" alt="" />
           <div>
             <span class="author">{{ item.author }}</span>
             <span class="article-total">
               {{ item.isMgz ? '共' : '' }}
-              <i> {{ item.art_total >= 999 ? '999+' : item.art_total }} </i
-              >{{ item.isMgz ? '期' : '篇文章' }}
+              <i> {{ item.art_total >= 999 ? '999+' : item.art_total }} </i>{{ item.isMgz ? '期' : '篇文章' }}
             </span>
           </div>
         </div>
@@ -30,10 +24,8 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import authorList from '@/assets/author.json';
-import { savePageScroll } from '@/tools/savePageScroll';
 
 const homeRef = ref(null);
-savePageScroll(homeRef);
 const router = useRouter();
 const jumpRouter = ({ index, isMgz }) => {
   if (!isMgz) {

@@ -55,7 +55,7 @@
       </div>
     </div>
     <transition name="van-fade">
-      <div class="overlay" v-if="isShow"></div>
+      <div class="overlay" v-if="isShow" :class="{ 'z-index': isShow }"></div>
     </transition>
   </van-config-provider>
 </template>
@@ -130,7 +130,6 @@ const focus = () => {
 const blur = () => {
   isShow.value = false;
   shape.value = 'round';
-  themeVars.value.searchBackgroundColor = 'rgb(244, 245, 247)';
 };
 </script>
 
@@ -142,6 +141,10 @@ const blur = () => {
   bottom: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  &.z-index {
+    z-index: 999;
+  }
 }
 .container {
   width: 100%;
