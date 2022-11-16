@@ -1,13 +1,20 @@
 <template>
   <div class="author-container">
-    <div class="content">
-      <ul v-if="titleList && titleList.length">
-        <!-- @cick="$router.push(`/author/12/1`)" -->
-        <li v-for="title in titleList" :key="title">{{ title }}</li>
-      </ul>
+    <!-- <ul v-if="titleList && titleList.length"> -->
+    <!-- @cick="$router.push(`/author/12/1`)" -->
+    <!-- <li v-for="title in titleList" :key="title">{{ title }}</li> -->
+    <!-- </ul> -->
 
-      <empty descriptionText="文章未收录" v-else />
+    <div class="art_title-container">
+      <nut-list :height="50" :listData="titleList" @scroll-bottom="handleScroll">
+        <template v-slot="{ item }">
+          <div class="list-item">
+            {{ item }}
+          </div>
+        </template>
+      </nut-list>
     </div>
+    <!-- <empty descriptionText="文章未收录" v-else /> -->
   </div>
 </template>
 
@@ -22,21 +29,30 @@ const authorId = route.params.id;
 const titleList = ref([]);
 const { at_title_list } = authorList.find((item) => item.id == authorId);
 titleList.value = at_title_list;
+
+const handleScroll = () => {
+  console.log(66);
+};
 </script>
 
 <style lang="less" scoped>
 .author-container {
   height: 100%;
-  overflow-y: scroll;
-  .content {
-    ul {
-      font-size: 16px;
-      line-height: 1.5;
 
-      li {
-        padding: 10px 16px;
-        border-bottom: 1px solid #ebedf1;
+  .art_title-container {
+    font-size: 16px;
+    line-height: 1.3;
+    :deep(.nut-list-container) {
+      .nut-list-item {
+        margin: 0;
       }
+    }
+    .list-item {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0px 16px;
+      border-bottom: 1px solid #ebedf1;
     }
   }
 }

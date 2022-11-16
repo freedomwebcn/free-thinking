@@ -4,6 +4,7 @@
       独立之精神 自由之思想
       <span class="iconfont icon-bi icon"></span>
     </h1>
+
     <ul>
       <li v-for="(item, index) in authorList" :key="item.pic" @click="jumpRouter({ index, isMgz: item.isMgz })" :class="{ 'is-mgz': item.isMgz }">
         <div class="content">
