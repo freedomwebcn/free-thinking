@@ -1,11 +1,11 @@
 <template>
-  <div class="author-container" id="scrollArea">
+  <div class="author-container animate__animated animate__slideInRight" id="scrollArea">
     <div v-if="titleList && titleList.length" id="contentArea">
       <!-- @cick="$router.push(`/author/12/1`)" -->
       <span v-for="title in titleList" :key="title">{{ title }}</span>
     </div>
 
-    <empty descriptionText="文章未收录" v-else />
+    <empty descriptionText="文章还未收录" v-else />
   </div>
 </template>
 
@@ -35,6 +35,7 @@ onMounted(() => {
 .author-container {
   height: 100%;
   overflow-y: auto;
+  --animate-duration: 0.5s;
   #contentArea {
     font-size: 16px;
     line-height: 1.3;
