@@ -54,18 +54,19 @@
         </ul>
       </div>
     </div>
+
     <transition name="van-fade">
       <div class="overlay" v-if="isShow" :class="{ 'z-index': isShow }"></div>
     </transition>
-    <div class="floatMenu-box">
-      <button class="floatMenu-toTop" :class="{ show: ishowFloatMenu }" @click="backTop">回到顶部</button>
-    </div>
+
+    <BackToTop :isShowMenu="ishowFloatMenu" @backToTop="backToTop" />
   </van-config-provider>
 </template>
 
 <script setup>
 import { ref, onMounted, onActivated, nextTick, computed } from 'vue';
 import { chunk, random } from 'lodash';
+import BackToTop from '../components/BackToTop.vue';
 import magazineList from '@/assets/magazine.json';
 
 const containerRef = ref(null);
@@ -84,10 +85,11 @@ onActivated(() => scrollPage());
 onMounted(() => {
   containerRef.value.addEventListener('scroll', (e) => (toggle.value ? (scrollPre.value = e.target.scrollTop) : (scrollNet.value = e.target.scrollTop)));
 });
+
 const ishowFloatMenu = computed(() => (scrollPre.value >= 1000 && toggle.value ? true : false));
-const backTop = () => {
-  containerRef.value.scrollTo({ top: 0, behavior: 'smooth' });
-};
+
+const backToTop = () => containerRef.value.scrollTo({ top: 0, behavior: 'smooth' });
+
 let changeToggleStatus = (val) => {
   toggle.value = val;
   nextTick(() => scrollPage());
@@ -153,30 +155,6 @@ const blur = () => {
   }
 }
 
-.floatMenu-box {
-  position: fixed;
-  right: 14px;
-  bottom: 76px;
-  z-index: 999;
-  .floatMenu-toTop {
-    border: none;
-    width: 40px;
-    height: 40px;
-    background: hsla(0, 0%, 100%, 0.95) url(https://static.ws.126.net/163/wap/f2e/ssr/static/media/menu-toTop.fe4b74d7c16e0758813b.png) 50% no-repeat;
-    background-size: 20px 20px;
-    border-radius: 50%;
-    box-shadow: 0 0 0.10667rem 0 rgba(0, 0, 0, 0.12);
-    font-size: 0;
-    opacity: 0;
-    &.show {
-      opacity: 1;
-      transition: opacity 0.3s linear;
-    }
-
-    // opacity: 0;
-    // pointer-events: none;
-  }
-}
 .container {
   width: 100%;
   height: 100%;
