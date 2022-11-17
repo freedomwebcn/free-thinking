@@ -28,7 +28,7 @@ onMounted(() => {
     var clusterize1 = new Clusterize({
       scrollId: 'scrollArea',
       contentId: 'contentArea',
-      rows_in_block: 20
+      rows_in_block: 40
     });
   });
 });
