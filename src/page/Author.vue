@@ -1,19 +1,10 @@
 <template>
   <div class="author-container" id="scrollArea">
-    <ul v-if="titleList && titleList.length" id="contentArea">
+    <div v-if="titleList && titleList.length" id="contentArea">
       <!-- @cick="$router.push(`/author/12/1`)" -->
-      <li v-for="title in titleList" :key="title">{{ title }}</li>
-    </ul>
+      <span v-for="title in titleList" :key="title">{{ title }}</span>
+    </div>
 
-    <!-- <div class="art_title-container">
-      <nut-list :height="50" :listData="titleList" @scroll-bottom="handleScroll">
-        <template v-slot="{ item }">
-          <div class="list-item">
-            {{ item }}
-          </div>
-        </template>
-      </nut-list>
-    </div> -->
     <!-- <empty descriptionText="文章未收录" v-else /> -->
   </div>
 </template>
@@ -32,9 +23,6 @@ const titleList = ref([]);
 const { at_title_list } = authorList.find((item) => item.id == authorId);
 titleList.value = at_title_list;
 
-const handleScroll = () => {
-  console.log(66);
-};
 onMounted(() => {
   nextTick(() => {
     var clusterize1 = new Clusterize({
@@ -50,16 +38,20 @@ onMounted(() => {
 .author-container {
   height: 100%;
   overflow-y: auto;
-  ul {
-    font-size: 15px;
+  #contentArea {
+    font-size: 16px;
     line-height: 1.3;
-    li {
-      height: 30px;
+
+    span {
+      display: block;
+      height: 36px;
       padding: 0px 16px 0 16px;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
-      line-height: 30px;
+      line-height: 36px;
+      border-bottom: 1px solid #ebedf1;
+      border-radius: 5px;
     }
   }
 }
