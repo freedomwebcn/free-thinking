@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "animate.css": "^4.1.1",
     "lib-flexible": "^0.3.2",
     "lodash": "^4.17.21",
     "lxgw-wenkai-screen-webfont": "^1.6.0",

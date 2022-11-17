@@ -1,5 +1,5 @@
 <template>
-  <div class="author-container animate__animated animate__slideInRight" id="scrollArea">
+  <div class="author-container" id="scrollArea">
     <div v-if="titleList && titleList.length" id="contentArea">
       <!-- @cick="$router.push(`/author/12/1`)" -->
       <span v-for="title in titleList" :key="title">{{ title }}</span>
