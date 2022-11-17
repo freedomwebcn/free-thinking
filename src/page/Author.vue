@@ -28,7 +28,7 @@ onMounted(() => {
     var clusterize1 = new Clusterize({
       scrollId: 'scrollArea',
       contentId: 'contentArea',
-      rows_in_block: 40
+      rows_in_block: 16
     });
   });
 });
@@ -44,12 +44,12 @@ onMounted(() => {
 
     span {
       display: block;
-      height: 36px;
+      height: 50px;
       padding: 0px 16px 0 16px;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
-      line-height: 36px;
+      line-height: 50px;
       border-bottom: 1px solid #ebedf1;
       border-radius: 5px;
     }
