@@ -38,17 +38,19 @@ onMounted(() => {
   #contentArea {
     font-size: 16px;
     line-height: 1.3;
+    margin: 0 16px;
 
     span {
       display: block;
       height: 50px;
-      padding: 0px 16px 0 16px;
+      //   padding: 0px 16px 0 16px;
+      padding: 0 5px;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
       line-height: 50px;
       border-bottom: 1px solid #ebedf1;
-      border-radius: 5px;
+      //   border-radius: 5px;
     }
   }
 }
