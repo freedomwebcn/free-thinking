@@ -1,11 +1,11 @@
 <template>
-  <div class="author-container">
-    <!-- <ul v-if="titleList && titleList.length"> -->
-    <!-- @cick="$router.push(`/author/12/1`)" -->
-    <!-- <li v-for="title in titleList" :key="title">{{ title }}</li> -->
-    <!-- </ul> -->
+  <div class="author-container" id="scrollArea">
+    <ul v-if="titleList && titleList.length" id="contentArea">
+      <!-- @cick="$router.push(`/author/12/1`)" -->
+      <li v-for="title in titleList" :key="title">{{ title }}</li>
+    </ul>
 
-    <div class="art_title-container">
+    <!-- <div class="art_title-container">
       <nut-list :height="50" :listData="titleList" @scroll-bottom="handleScroll">
         <template v-slot="{ item }">
           <div class="list-item">
@@ -13,13 +13,15 @@
           </div>
         </template>
       </nut-list>
-    </div>
+    </div> -->
     <!-- <empty descriptionText="文章未收录" v-else /> -->
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import Clusterize from 'clusterize.js/clusterize.js';
+
+import { ref, onMounted, nextTick } from 'vue';
 import { useRoute } from 'vue-router';
 import empty from '@/components/empty.vue';
 import authorList from '@/assets/author';
@@ -33,26 +35,31 @@ titleList.value = at_title_list;
 const handleScroll = () => {
   console.log(66);
 };
+onMounted(() => {
+  nextTick(() => {
+    var clusterize1 = new Clusterize({
+      scrollId: 'scrollArea',
+      contentId: 'contentArea',
+      rows_in_block: 20
+    });
+  });
+});
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .author-container {
   height: 100%;
-
-  .art_title-container {
-    font-size: 16px;
+  overflow-y: auto;
+  ul {
+    font-size: 15px;
     line-height: 1.3;
-    :deep(.nut-list-container) {
-      .nut-list-item {
-        margin: 0;
-      }
-    }
-    .list-item {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      padding: 0px 16px;
-      border-bottom: 1px solid #ebedf1;
+    li {
+      height: 30px;
+      padding: 0px 16px 0 16px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      line-height: 30px;
     }
   }
 }

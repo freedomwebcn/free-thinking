@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/clusterize.js@0.19.0/clusterize.css" /> -->
+    <title>Document</title>
+  </head>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    html,
+    body {
+      font: normal 16px/1.2 Calibri, sans-serif;
+      height: 100%;
+    }
+
+    /* max-height - the only parameter in this file that needs to be edited.
+ * Change it to suit your needs. The rest is recommended to leave as is.
+ */
+    .clusterize-scroll {
+      /* max-height: 200px; */
+      height: 100%;
+      overflow: auto;
+    }
+
+    /**
+ * Avoid vertical margins for extra tags
+ * Necessary for correct calculations when rows have nonzero vertical margins
+ */
+    .clusterize-extra-row {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+    }
+
+    /* By default extra tag .clusterize-keep-parity added to keep parity of rows.
+ * Useful when used :nth-child(even/odd)
+ */
+    .clusterize-extra-row.clusterize-keep-parity {
+      display: none;
+    }
+
+    /* During initialization clusterize adds tabindex to force the browser to keep focus
+ * on the scrolling list, see issue #11
+ * Outline removes default browser's borders for focused elements.
+ */
+    .clusterize-content {
+      outline: 0;
+      counter-reset: clusterize-counter;
+    }
+
+    /* Centering message that appears when no data provided
+ */
+    .clusterize-no-data td {
+      text-align: center;
+    }
+    li {
+      height: 50px;
+    }
+  </style>
+  <body>
+    <!--HTML-->
+
+    <div id="scrollArea" class="clusterize-scroll">
+      <ul id="contentArea" class="clusterize-content">
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>3</li>
+        <li>First row</li>
+        <li>Second row</li>
+        <li>666666</li>
+      </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/clusterize.js@0.19.0/clusterize.js"></script>
+
+    <script>
+      var clusterize1 = new Clusterize({
+        scrollId: 'scrollArea',
+        contentId: 'contentArea',
+        rows_in_block: 20
+      });
+    </script>
+  </body>
+</html>
