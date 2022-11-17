@@ -5,14 +5,12 @@
       <span v-for="title in titleList" :key="title">{{ title }}</span>
     </div>
 
-    <!-- <empty descriptionText="文章未收录" v-else /> -->
+    <empty descriptionText="文章未收录" v-else />
   </div>
 </template>
 
 <script setup>
-import Clusterize from 'clusterize.js/clusterize.js';
-
-import { ref, onMounted, nextTick } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import empty from '@/components/empty.vue';
 import authorList from '@/assets/author';
@@ -24,13 +22,12 @@ const { at_title_list } = authorList.find((item) => item.id == authorId);
 titleList.value = at_title_list;
 
 onMounted(() => {
-  nextTick(() => {
-    var clusterize1 = new Clusterize({
+  titleList.value.length > 0 &&
+    new Clusterize({
       scrollId: 'scrollArea',
       contentId: 'contentArea',
       rows_in_block: 16
     });
-  });
 });
 </script>
 
