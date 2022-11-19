@@ -17,7 +17,7 @@
                 >期
               </template>
               <template v-else
-                >共<i> {{ item.at_title_list && item.at_title_list.length >= 999 ? '99+' : item.at_title_list.length }} </i>篇文章
+                >共<i> {{ item.at_title_list && item.at_title_list.length >= 999 ? '999+' : item.at_title_list.length }} </i>篇文章
               </template>
             </span>
           </div>
