@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <router-view v-slot="{ Component }">
-      <keep-alive :exclude="['Home', 'MagazineInfo', 'Author']">
+      <keep-alive :exclude="['MagazineInfo', 'Author']">
         <component :is="Component" :key="$route.path" />
       </keep-alive>
     </router-view>

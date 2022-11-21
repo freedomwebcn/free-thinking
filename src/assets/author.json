@@ -1315,6 +1315,15 @@
     },
     {
         "id": 14,
+        "author": "李慎之",
+        "pic": "http://www.aisixiang.com/thinktank/images/photo/lishenzhi2.gif",
+        "at_title_list": [
+            "风雨苍黄五十年——国庆夜独语",
+            "中国现代化的目标是民主"
+        ]
+    },
+    {
+        "id": 15,
         "author": "摘录",
         "pic": "https://i.postimg.cc/tTFC4xzL/snipaste20221119-193802.png",
         "at_title_list": [
@@ -1323,7 +1332,7 @@
         ]
     },
     {
-        "id": 15,
+        "id": 16,
         "author": "炎黄春秋 1991年 — 2016年 期刊",
         "isMgz": true,
         "pic": "https://i.postimg.cc/NMHbjgxP/QQ-20221110100233.png",
