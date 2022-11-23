@@ -6,7 +6,7 @@
     </h1>
 
     <ul>
-      <li v-for="(item, index) in data" :key="item.pic" @click="jumpRouter({ index, isMgz: item.isMgz })" :class="{ 'change-style': item.isMgz || (index == data.length - 2 && isAddClass) }">
+      <li v-for="(item, index) in data" :key="item.pic" @click="getDirData({ id: item.id, isMgz: item.isMgz })" :class="{ 'change-style': item.isMgz || (index == data.length - 2 && isAddClass) }">
         <div class="content">
           <img :src="item.pic" alt="" />
           <div>
@@ -33,19 +33,11 @@ import { useRouter } from 'vue-router';
 import { reqHomeData } from '@/api';
 
 const data = await reqHomeData();
-// data.forEach((item) => item.title_list && (item.title_list = JSON.parse(item.title_list)));
-console.log(data);
-
 const homeRef = ref(null);
 const router = useRouter();
-
 const isAddClass = computed(() => ((data.length - 1) % 2 != 0 ? true : false));
-const jumpRouter = ({ index, isMgz }) => {
-  if (!isMgz) {
-    router.push(`/author/${index + 1}`);
-    return;
-  }
-  router.push(`/magazinelist/${index + 1}`);
+const getDirData = ({ id, isMgz }) => {
+  isMgz ? router.push(`/magazinelist/${id}`) : router.push(`/author/${id}`);
 };
 </script>
 <style lang="less" scoped>

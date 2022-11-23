@@ -21,6 +21,7 @@ const authorId = route.params.id;
 let titleList = [];
 
 const dirData = await reqAuthorDirData({ id: authorId });
+
 dirData.forEach((item) => item.title_list && (titleList = item.title_list.split('||')));
 onMounted(() => {
   titleList.length > 0 &&
