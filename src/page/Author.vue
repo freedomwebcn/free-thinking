@@ -10,19 +10,20 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import empty from '@/components/empty.vue';
-import authorList from '@/assets/author';
+// import authorList from '@/assets/author';
+import { reqAuthorDirData } from '@/api';
 
 const route = useRoute();
 const authorId = route.params.id;
-const titleList = ref([]);
-const { at_title_list } = authorList.find((item) => item.id == authorId);
-titleList.value = at_title_list;
+let titleList = [];
 
+const dirData = await reqAuthorDirData({ id: authorId });
+dirData.forEach((item) => item.title_list && (titleList = item.title_list.split('||')));
 onMounted(() => {
-  titleList.value.length > 0 &&
+  titleList.length > 0 &&
     new Clusterize({
       scrollId: 'scrollArea',
       contentId: 'contentArea',

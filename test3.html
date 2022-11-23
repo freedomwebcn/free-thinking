@@ -354,6 +354,39 @@
         contentId: 'contentArea',
         rows_in_block: 20
       });
+
+      // var reg1 = new RegExp('\', 'g');
+      let str =
+        '[{"issue":"01期","img":"http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199101.jpg"},{"issue":"02期","img":"http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199102.jpg"},{"issue":"03期","img":"http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199103.jpg"}]';
+
+      // var a1 = str.replace('\\', '');
+
+      // console.log(JSON.parse(str));
+
+      let jsonStr = [
+        {
+          id: '1',
+          pubYear: '1991',
+          issue:
+            '[{"issue":"01期","img":"http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199101.jpg"},{"issue":"02期","img":"http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199102.jpg"},{"issue":"03期","img":"http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199103.jpg"}]'
+        },
+        {
+          id: '2',
+          pubYear: '1992',
+          issue:
+            '[{"issue":"01期","img":"http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199201.jpg"},{"issue":"02期","img":"http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199202.jpg"},{"issue":"03期","img":"http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199203.jpg"},{"issue":"04期","img":"http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199204.jpg"},{"issue":"05期","img":"http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199205.jpg"},{"issue":"06期","img":"http://c61.cnki.net/CJFD/big/YHCQ/YHCQ199206.jpg"}]'
+        }
+      ];
+      jsonStr.forEach((item, i) => {
+        item.issue = JSON.parse(item.issue);
+        // console.log(JSON.parse(item.issue));
+      });
+
+      console.log(jsonStr);
+
+      const str888 = '公共说理如何避免“越说越僵”';
+
+      console.log(str888.split('||'));
     </script>
   </body>
 </html>

@@ -7,8 +7,8 @@
           <div class="title van-hairline--bottom">
             <h2>{{ directoryItem.title }}</h2>
           </div>
-          <div class="van-hairline--bottom common dec-name" v-for="content in directoryItem.directoryContent">
-            {{ content.dct_name }}
+          <div class="van-hairline--bottom common dir-name" v-for="content in directoryItem.directoryContent">
+            {{ content.dir_name }}
           </div>
         </li>
       </ul>
@@ -18,22 +18,25 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import empty from '@/components/empty.vue';
+import { reqMagazineDirData } from '@/api';
 
-import magazineDirectoryList from '@/assets/magazine_test_dec.json';
-
-const directoryList = ref([]);
+let directoryList = [];
 const route = useRoute();
 const [year, issue] = route.params.pubid.slice(0, -1).split('年');
-try {
-  directoryList.value = [];
-  const { directory } = magazineDirectoryList[year].find((directoryItem) => directoryItem.issue.slice(0, -1) == issue);
-  directoryList.value = directory;
-} catch (error) {
-  console.log('本期目录未录入');
-}
+const dirData = await reqMagazineDirData({ year });
+
+dirData.forEach((item) => {
+  item.dir = JSON.parse(item.dir);
+  item.dir.find((dirItem) => {
+    if (issue == dirItem.issue.slice(0, -1)) {
+      const { directory } = dirItem;
+      directoryList = directory;
+    }
+  });
+});
+// console.log(dirData);
 </script>
 
 <style lang="less" scoped>
@@ -78,7 +81,7 @@ try {
             }
           }
         }
-        .dec-name {
+        .dir-name {
           display: flex;
           align-items: center;
           padding: 10px 0 10px 10px;

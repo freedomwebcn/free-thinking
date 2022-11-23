@@ -67,8 +67,9 @@
 import { ref, onMounted, onActivated, nextTick, computed } from 'vue';
 import { chunk, random } from 'lodash';
 import BackToTop from '../components/BackToTop.vue';
-import magazineList from '@/assets/magazine.json';
+import { reqMagazineData } from '@/api';
 
+const magazineData = await reqMagazineData();
 const containerRef = ref(null);
 const loading = ref(false);
 const finished = ref(false);
@@ -98,13 +99,15 @@ let changeToggleStatus = (val) => {
 const scrollPage = () => (toggle.value ? (containerRef.value.scrollTop = scrollPre.value) : (containerRef.value.scrollTop = scrollNet.value));
 
 // 格式化json数据
-magazineList.forEach((item) => {
-  item.pubIssue.forEach((issueObj) => {
-    const { pubYear } = item;
+magazineData.forEach((item) => {
+  item.pub_issue = JSON.parse(item.pub_issue);
+  const { pub_year } = item;
+  item.pub_issue.forEach((issueObj) => {
     const { issue, img } = issueObj;
-    formatData.push({ publishDate: pubYear + issue, img });
+    formatData.push({ publishDate: pub_year + '年' + issue, img });
   });
 });
+console.log(formatData);
 result.value = chunk(formatData, 18);
 
 let index = 0;

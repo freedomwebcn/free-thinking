@@ -6,18 +6,18 @@
     </h1>
 
     <ul>
-      <li v-for="(item, index) in authorList" :key="item.pic" @click="jumpRouter({ index, isMgz: item.isMgz })" :class="{ 'is-mgz': item.isMgz }">
+      <li v-for="(item, index) in data" :key="item.pic" @click="jumpRouter({ index, isMgz: item.isMgz })" :class="{ 'change-style': item.isMgz || (index == data.length - 2 && isAddClass) }">
         <div class="content">
           <img :src="item.pic" alt="" />
           <div>
-            <span class="author">{{ item.author }}</span>
+            <span class="author">{{ item.name }}</span>
             <span class="article-total">
               <template v-if="item.isMgz"
-                >共<i>{{ item.at_total }}</i
+                >共<i>{{ item.total }}</i
                 >期
               </template>
               <template v-else
-                >共<i> {{ item.at_title_list && item.at_title_list.length >= 999 ? '999+' : item.at_title_list.length }} </i>篇文章
+                >共<i> {{ item.total >= 999 ? '999+' : item.total }} </i>篇文章
               </template>
             </span>
           </div>
@@ -27,13 +27,19 @@
   </div>
 </template>
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
-import authorList from '@/assets/author';
+// import authorList from '@/assets/author';
+import { reqHomeData } from '@/api';
+
+const data = await reqHomeData();
+// data.forEach((item) => item.title_list && (item.title_list = JSON.parse(item.title_list)));
+console.log(data);
 
 const homeRef = ref(null);
 const router = useRouter();
 
+const isAddClass = computed(() => ((data.length - 1) % 2 != 0 ? true : false));
 const jumpRouter = ({ index, isMgz }) => {
   if (!isMgz) {
     router.push(`/author/${index + 1}`);
@@ -118,7 +124,7 @@ const jumpRouter = ({ index, isMgz }) => {
           }
         }
       }
-      &.is-mgz {
+      &.change-style {
         grid-column: 1 / span 2;
         .content {
           div {
