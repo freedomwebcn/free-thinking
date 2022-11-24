@@ -5,7 +5,6 @@
         <li v-for="item in list">{{ item }}</li>
       </ul>
     </div>
-
     <span class="loading">
       <van-loading type="spinner" v-if="isShow" vertical>加载中</van-loading>
       <i v-else>{{ text }}</i>

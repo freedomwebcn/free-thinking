@@ -1,6 +1,6 @@
 <template>
-  <div class="author-container" id="scrollArea">
-    <div v-if="titleList && titleList.length" id="contentArea">
+  <div class="author-container" id="scrollArea" ref="containerRef">
+    <div id="contentArea" ref="contentRef">
       <!-- @cick="$router.push(`/author/12/1`)" -->
       <span v-for="title in titleList" :key="title">{{ title }}</span>
     </div>
@@ -12,31 +12,35 @@
 </template>
 
 <script setup>
-import { ref, watchEffect, nextTick } from 'vue';
+import { ref, nextTick, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import empty from '@/components/empty.vue';
-import { reqAuthorDirData } from '@/api';
+import { reqTitleData } from '@/api';
 
 const route = useRoute();
 let titleList = ref([]);
-let data;
 let status = ref(null);
-// 导航完成后获取数据 --如果直接请求数据 会在上级路由组件中停留到该组件数据全部请求完成后才会渲染该组件
-watchEffect(async () => {
-  if (route.params.id) {
-    data = await reqAuthorDirData({ id: route.params.id });
-    data.forEach((item) => (item.title_list ? (titleList.value = item.title_list.split('||')) : (status.value = false)));
+const containerRef = ref(null);
+const contentRef = ref(null);
+let data;
 
-    nextTick(() => {
-      titleList.value.length > 0 &&
-        new Clusterize({
-          scrollId: 'scrollArea',
-          contentId: 'contentArea',
-          rows_in_block: 16
-        });
-    });
-  }
-});
+// 导航完成后获取数据
+//--如果直接请求数据 会在上级路由组件中停留至该组件数据全部请求完成后才会渲染组件
+watch(
+  () => route.params,
+  async () => {
+    const id = route.params.id;
+    if (id) {
+      data = await reqTitleData({ id });
+      data.forEach((item) => (item.title_list ? (titleList.value = item.title_list.split('||')) : (status.value = false)));
+      await nextTick();
+      // scroll总高度大于可视区域2倍 初始化Clusterize
+      const isInitClusterize = contentRef.value.scrollHeight > containerRef.value.clientHeight * 2;
+      isInitClusterize && new Clusterize({ scrollId: 'scrollArea', contentId: 'contentArea', rows_in_block: 16 });
+    }
+  },
+  { immediate: true }
+);
 </script>
 
 <style lang="less">
