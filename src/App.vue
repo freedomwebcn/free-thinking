@@ -8,7 +8,7 @@
       </keep-alive> -->
 
       <template v-if="Component">
-        <KeepAlive :exclude="['MagazineInfo', 'Author']">
+        <KeepAlive :exclude="['MagazineInfo', 'Title', 'Content']">
           <Suspense>
             <!-- 主要内容 -->
             <component :is="Component" :key="$route.path" />

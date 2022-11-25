@@ -1,9 +1,9 @@
 import Home from '@/page/Home.vue';
-import Author from '@/page/Author.vue';
+import Title from '@/page/Title.vue';
 import MagazineList from '@/page/MagazineList.vue';
 import MagazineInfo from '@/page/MagazineInfo.vue';
 
-import art_12_1 from '@/art/art_12_1.vue';
+import Content from '@/page/Content.vue';
 
 import text2 from '@/test/text2.vue';
 
@@ -21,8 +21,8 @@ const routes = [
   },
   {
     path: '/author/:id',
-    name: 'Author',
-    component: Author
+    name: 'Title',
+    component: Title
   },
   {
     path: '/magazinelist/:id',
@@ -35,9 +35,9 @@ const routes = [
     component: MagazineInfo
   },
   {
-    path: '/author/12/1',
-    name: 'art',
-    component: art_12_1
+    path: '/author/:author_id/:title_id',
+    name: 'Content',
+    component: Content
   },
   {
     path: '/test2',
