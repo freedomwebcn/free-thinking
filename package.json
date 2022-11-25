@@ -13,6 +13,7 @@
     "lib-flexible": "^0.3.2",
     "lodash": "^4.17.21",
     "lxgw-wenkai-screen-webfont": "^1.6.0",
+    "nprogress": "^0.2.0",
     "vue": "^3.2.41",
     "vue-router": "^4.1.6"
   },

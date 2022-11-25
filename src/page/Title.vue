@@ -4,9 +4,7 @@
       <!-- @cick="$router.push(`/author/12/1`)" -->
       <span v-for="(title, i) in titleList" :data-id="i">{{ title }}</span>
     </div>
-    <div class="loading" v-if="!titleList.length && status == null">
-      <van-loading size="24px" vertical>加载中...</van-loading>
-    </div>
+
     <empty descriptionText="文章还未收录" v-if="status != null" />
   </div>
 </template>
@@ -16,16 +14,20 @@ import { ref, nextTick, watch, onMounted } from 'vue';
 import { useRouter, useRoute, onBeforeRouteLeave } from 'vue-router';
 import empty from '@/components/empty.vue';
 import { reqTitleData } from '@/api';
+import nprogress from 'nprogress';
+import 'nprogress/nprogress.css';
 
 const router = useRouter();
 const route = useRoute();
 const authorId = route.params.id;
-let titleList = ref([]);
-let status = ref(null);
+const titleList = ref([]);
+const status = ref(null);
 const containerRef = ref(null);
 const contentRef = ref(null);
 let data;
-
+nprogress.configure({
+  template: '<div class="bar" role="bar"><div class="peg"></div</div>'
+});
 onBeforeRouteLeave((to) => {
   if (to.name != 'Content') {
     window.localStorage.clear();
@@ -44,17 +46,25 @@ watch(
   async () => {
     const id = route.params.id;
     if (!id) return;
+    nprogress.start();
     data = await reqTitleData({ id });
     data.forEach((item) => (item.title_list ? (titleList.value = item.title_list.split('||')) : (status.value = false)));
+    nprogress.done();
     status.value == null && (await nextTick());
-    // scroll总高度大于可视区域2倍 初始化Clusterize
-    const isInitClusterize = contentRef.value.scrollHeight > containerRef.value.clientHeight * 2;
-    if (!isInitClusterize) return;
-    new Clusterize({ scrollId: 'scrollArea', contentId: 'contentArea', rows_in_block: 16 });
-    containerRef.value.scrollTop = window.localStorage.getItem('scrollKey');
+    //初始化长列表
+    initClusterize();
   },
   { immediate: true }
 );
+
+const initClusterize = () => {
+  // scroll总高度大于可视区域2倍 初始化Clusterize
+  const isInitClusterize = contentRef.value.scrollHeight > containerRef.value.clientHeight * 2;
+  if (!isInitClusterize) return;
+  new Clusterize({ scrollId: 'scrollArea', contentId: 'contentArea', rows_in_block: 16 });
+  //滚动到之前保存的scroll值
+  containerRef.value.scrollTop = window.localStorage.getItem('scrollKey');
+};
 
 const getContent = (e) => {
   const titleId = e.target.getAttribute('data-id');
@@ -82,16 +92,6 @@ const getContent = (e) => {
       line-height: 50px;
       border-bottom: 1px solid #ebedf1;
     }
-  }
-  .loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
   }
 }
 </style>
