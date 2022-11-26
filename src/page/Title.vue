@@ -14,8 +14,8 @@ import { ref, nextTick, watch, onMounted } from 'vue';
 import { useRouter, useRoute, onBeforeRouteLeave } from 'vue-router';
 import empty from '@/components/empty.vue';
 import { reqTitleData } from '@/api';
-import nprogress from 'nprogress';
-import 'nprogress/nprogress.css';
+import nprogress from 'nprogress/nprogress.js';
+import '@/assets/nprogress.css';
 
 const router = useRouter();
 const route = useRoute();
@@ -29,14 +29,10 @@ nprogress.configure({
   template: '<div class="bar" role="bar"><div class="peg"></div</div>'
 });
 onBeforeRouteLeave((to) => {
-  if (to.name != 'Content') {
-    window.localStorage.clear();
-  }
+  if (to.name != 'Content') window.localStorage.clear();
 });
 onMounted(() => {
-  containerRef.value.addEventListener('scroll', (e) => {
-    window.localStorage.setItem('scrollKey', e.target.scrollTop);
-  });
+  containerRef.value.addEventListener('scroll', (e) => window.localStorage.setItem('scrollKey', e.target.scrollTop));
 });
 
 // 导航完成后获取数据
@@ -46,25 +42,48 @@ watch(
   async () => {
     const id = route.params.id;
     if (!id) return;
-    nprogress.start();
-    data = await reqTitleData({ id });
-    data.forEach((item) => (item.title_list ? (titleList.value = item.title_list.split('||')) : (status.value = false)));
-    nprogress.done();
-    status.value == null && (await nextTick());
-    //初始化长列表
-    initClusterize();
+    (await getLocalStorgeData()) || getTitleListData(id);
   },
   { immediate: true }
 );
 
-const initClusterize = () => {
+//从本地读取数据
+async function getLocalStorgeData() {
+  const localStorgeTitleList = JSON.parse(window.localStorage.getItem('titleListKey') || '[]');
+  if (localStorgeTitleList.length) {
+    titleList.value = localStorgeTitleList;
+    initClusterize();
+    return true;
+  }
+  return false;
+}
+
+//请求接口数据
+async function getTitleListData(id) {
+  nprogress.start();
+  data = await reqTitleData({ id });
+  data.forEach((item) => {
+    if (item.title_list) {
+      titleList.value = item.title_list.split('||');
+      window.localStorage.setItem('titleListKey', JSON.stringify(titleList.value));
+      initClusterize();
+    } else {
+      status.value = false;
+    }
+  });
+  nprogress.done();
+}
+
+//初始化列表
+async function initClusterize() {
+  await nextTick();
   // scroll总高度大于可视区域2倍 初始化Clusterize
   const isInitClusterize = contentRef.value.scrollHeight > containerRef.value.clientHeight * 2;
   if (!isInitClusterize) return;
   new Clusterize({ scrollId: 'scrollArea', contentId: 'contentArea', rows_in_block: 16 });
   //滚动到之前保存的scroll值
   containerRef.value.scrollTop = window.localStorage.getItem('scrollKey');
-};
+}
 
 const getContent = (e) => {
   const titleId = e.target.getAttribute('data-id');

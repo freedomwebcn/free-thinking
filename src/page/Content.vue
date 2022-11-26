@@ -2,10 +2,15 @@
   <NProgress>
     <div class="article">
       <h1>{{ contentData.title }}</h1>
-      <span>{{ contentData.author }}</span>
+      <span class="author">{{ contentData.author }}</span>
       <p v-for="text in contentData.text_data">
         {{ text }}
       </p>
+
+      <van-divider v-if="contentData.title" />
+      <div class="source">
+        <span v-for="(sourceText, index) in contentData.source">{{ [index + 1] }}：{{ sourceText }}</span>
+      </div>
     </div>
     <div class="loading" v-if="!contentData.title && status == null">
       <van-loading size="24px" vertical>加载中...</van-loading>
@@ -25,11 +30,15 @@ let status = ref(null);
 
 watch(
   () => route.params,
-  async () => {
+  () => {
     if (!route.params.author_id) return;
     const { author_id, title_id } = route.params;
-    const resData = await reqContent({ author_id, title_id });
-    resData.data ? (contentData.value = JSON.parse(resData.data)) : (status.value = false);
+    // 如果网太快 loading会产生闪烁 加个300ms延迟
+    setTimeout(async () => {
+      const resData = await reqContent({ author_id, title_id });
+      resData.data ? (contentData.value = JSON.parse(resData.data)) : (status.value = false);
+      console.log(contentData.value);
+    }, 300);
   },
   { immediate: true }
 );
@@ -46,7 +55,7 @@ watch(
     margin: 25px 0;
   }
 
-  span {
+  .author {
     display: block;
     text-align: center;
     font-size: 16px;
@@ -60,9 +69,21 @@ watch(
     text-align: justify;
     text-justify: inter-ideograph;
 
-    &:last-child {
-      text-align: right;
-    } //ismgz
+    // &:last-child {
+    //   text-align: right;
+    // } //ismgz
+  }
+
+  .source {
+    font-size: 15px;
+    padding: 0px 0 16px 0;
+    line-height: 1.5em;
+    color: rgb(165, 165, 165);
+    letter-spacing: 1.5px;
+
+    span {
+      display: block;
+    }
   }
 }
 
