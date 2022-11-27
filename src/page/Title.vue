@@ -1,7 +1,6 @@
 <template>
   <div class="author-container" id="scrollArea" ref="containerRef">
     <div id="contentArea" ref="contentRef" @click="getContent">
-      <!-- @cick="$router.push(`/author/12/1`)" -->
       <span v-for="(title, i) in titleList" :data-id="i">{{ title }}</span>
     </div>
 
@@ -49,29 +48,26 @@ watch(
 
 //从本地读取数据
 async function getLocalStorgeData() {
-  const localStorgeTitleList = JSON.parse(window.localStorage.getItem('titleListKey') || '[]');
-  if (localStorgeTitleList.length) {
-    titleList.value = localStorgeTitleList;
-    initClusterize();
-    return true;
-  }
-  return false;
+  const data = JSON.parse(window.localStorage.getItem('titleListKey') || '[]');
+  if (!data.length) return false;
+  titleList.value = data;
+  initClusterize();
+  return true;
 }
 
 //请求接口数据
 async function getTitleListData(id) {
   nprogress.start();
   data = await reqTitleData({ id });
-  data.forEach((item) => {
-    if (item.title_list) {
-      titleList.value = item.title_list.split('||');
-      window.localStorage.setItem('titleListKey', JSON.stringify(titleList.value));
-      initClusterize();
-    } else {
-      status.value = false;
-    }
-  });
+  if (!data.title_list) {
+    status.value = false;
+    nprogress.done();
+    return;
+  }
+  titleList.value = data.title_list.split('||');
   nprogress.done();
+  window.localStorage.setItem('titleListKey', JSON.stringify(titleList.value));
+  initClusterize();
 }
 
 //初始化列表
@@ -95,7 +91,6 @@ const getContent = (e) => {
 .author-container {
   height: 100%;
   overflow-y: auto;
-  --animate-duration: 0.5s;
   #contentArea {
     font-size: 16px;
     line-height: 1.3;
