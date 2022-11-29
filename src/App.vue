@@ -1,16 +1,9 @@
 <template>
   <div class="app">
     <router-view v-slot="{ Component }">
-      <!-- <keep-alive :exclude="['MagazineInfo', 'Author']">
-        <Suspense>
-          <component :is="Component" :key="$route.path" />
-        </Suspense>
-      </keep-alive> -->
-
       <template v-if="Component">
         <KeepAlive :exclude="['MagazineInfo', 'Title', 'Content']">
           <Suspense>
-            <!-- 主要内容 -->
             <component :is="Component" :key="$route.path" />
           </Suspense>
         </KeepAlive>

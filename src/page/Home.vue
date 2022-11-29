@@ -37,7 +37,7 @@ const homeRef = ref(null);
 const router = useRouter();
 const isAddClass = computed(() => ((data.length - 1) % 2 != 0 ? true : false));
 const getDirData = ({ id, isMgz }) => {
-  isMgz ? router.push(`/magazinelist/${id}`) : router.push(`/author/${id}`);
+  isMgz ? router.push(`/magazine/${id}`) : router.push(`/author/${id}`);
 };
 </script>
 <style lang="less" scoped>
