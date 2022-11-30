@@ -30,12 +30,13 @@ const { setItem, getItem } = localStorage();
 
 const formatData = [];
 let chunkData = JSON.parse(getItem('data') || '[]');
-
+let index = 0;
 onBeforeRouteLeave((to) => {
   // 根据跳转的路由 决定是否要清除数据
   if (to.name != 'MagazineInfo') {
     //缓存路由跳转后，数据还存在，当跳转到Home路由，再跳进来时用的数据还是之前请求的。
     result.value = [];
+    index = 0; //重置index值 防止从home页跳进来 下拉加载时页面数据错位
   }
 });
 
@@ -60,13 +61,12 @@ async function getMagazineListData() {
     });
   });
   setTimeout(() => {
-    chunkData = chunk(formatData, 15);
+    chunkData = chunk(formatData, 18);
     result.value = chunkData[0];
     setItem('data', { result: chunkData }, true);
   }, 300);
 }
 
-let index = 0;
 const onLoad = () => {
   //模拟下拉加载
   setTimeout(() => {
