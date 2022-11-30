@@ -10,14 +10,13 @@
       </li>
     </ul>
   </van-list>
-
   <div class="loading" v-else>
     <van-loading size="24px" vertical>加载中...</van-loading>
   </div>
 </template>
 <script setup>
-import { ref, watch } from 'vue';
-import { useRoute, onBeforeRouteLeave } from 'vue-router';
+import { onActivated, ref } from 'vue';
+import { onBeforeRouteLeave } from 'vue-router';
 import { reqMagazineData } from '@/api';
 import { chunk } from 'lodash';
 import localStorage from './localStorage';
@@ -25,12 +24,11 @@ import localStorage from './localStorage';
 const loading = ref(false);
 const finished = ref(false);
 const result = ref([]);
-const route = useRoute();
 const { setItem, getItem } = localStorage();
-
 const formatData = [];
 let chunkData = JSON.parse(getItem('data') || '[]');
 let index = 0;
+
 onBeforeRouteLeave((to) => {
   // 根据跳转的路由 决定是否要清除数据
   if (to.name != 'MagazineInfo') {
@@ -40,14 +38,10 @@ onBeforeRouteLeave((to) => {
   }
 });
 
-watch(
-  () => route.params,
-  async () => {
-    if (!route.params.id) return;
-    result.value.length || getMagazineListData();
-  },
-  { immediate: true }
-);
+//这里不能用 watch 监听，因为这个组件是缓存组件 当跳转其他路由时 页面数据并没有销毁 同时也会触发watch函数执行
+onActivated(() => {
+  result.value.length || getMagazineListData();
+});
 
 async function getMagazineListData() {
   const listData = await reqMagazineData();
