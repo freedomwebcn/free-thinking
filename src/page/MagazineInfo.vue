@@ -1,19 +1,25 @@
 <template>
   <div class="container">
-    <h1>本期目录</h1>
-    <div class="directory-container" v-if="directoryList && directoryList.length">
-      <ul>
-        <li v-for="directoryItem in directoryList" :key="directoryItem.title">
-          <div class="title van-hairline--bottom">
-            <h2>{{ directoryItem.title }}</h2>
-          </div>
-          <div class="van-hairline--bottom common dir-name" v-for="content in directoryItem.directoryContent">
-            {{ content.dir_name }}
-          </div>
-        </li>
-      </ul>
+    <template v-if="directoryList.length">
+      <h1>本期目录</h1>
+      <div class="directory-container" v-if="directoryList && directoryList.length">
+        <ul>
+          <li v-for="directoryItem in directoryList" :key="directoryItem.title">
+            <div class="title van-hairline--bottom">
+              <h2>{{ directoryItem.title }}</h2>
+            </div>
+            <div class="van-hairline--bottom common dir-name" v-for="content in directoryItem.directoryContent">
+              {{ content.dir_name }}
+            </div>
+          </li>
+        </ul>
+      </div>
+    </template>
+
+    <div class="loading" v-if="!directoryList.length && satatus == null">
+      <van-loading size="24px" vertical>加载中...</van-loading>
     </div>
-    <empty descriptionText="本期目录还未录入" v-else />
+    <empty descriptionText="本期目录还未录入" v-if="!directoryList.length && satatus != null" />
   </div>
 </template>
 
@@ -21,22 +27,36 @@
 import { useRoute } from 'vue-router';
 import empty from '@/components/empty.vue';
 import { reqMagazineDirData } from '@/api';
+import { ref, watch } from 'vue';
 
-let directoryList = [];
+let directoryList = ref([]);
 const route = useRoute();
 const [year, issue] = route.params.pubid.slice(0, -1).split('年');
-const dirData = await reqMagazineDirData({ year });
+const satatus = ref(null);
 
-dirData.forEach((item) => {
-  item.dir = JSON.parse(item.dir);
-  item.dir.find((dirItem) => {
-    if (issue == dirItem.issue.slice(0, -1)) {
-      const { directory } = dirItem;
-      directoryList = directory;
+watch(
+  () => route.params,
+  async () => {
+    if (!route.params.pubid) return;
+    getDirData();
+  },
+  {
+    immediate: true
+  }
+);
+
+async function getDirData() {
+  //获取到的是该年份发行的所有期刊
+  const dirData = await reqMagazineDirData({ year });
+  // 遍历所有期刊，找出与当前要查看的期刊 对应的那一项数据
+  satatus.value = dirData.some((item) => {
+    if (issue == item.issue.slice(0, -1)) {
+      const { directory } = item;
+      directoryList.value = directory;
+      return true;
     }
   });
-});
-// console.log(dirData);
+}
 </script>
 
 <style lang="less" scoped>
@@ -99,6 +119,17 @@ dirData.forEach((item) => {
         }
       }
     }
+  }
+
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
 }
 </style>

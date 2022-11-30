@@ -11,8 +11,8 @@ export default function () {
     return window.localStorage.getItem(key);
   };
 
-  const clearStorage = (key, isClearAll = true) => {
-    if (isClearAll) {
+  const clearStorage = (key, clearAll = true) => {
+    if (clearAll) {
       window.localStorage.clear();
       return;
     }

@@ -67,18 +67,12 @@ let myFavouriteScrollVal = 0;
 const { setItem, getItem, clearStorage } = localStorage();
 
 onBeforeRouteLeave((to) => {
-  if (to.name != 'MagazineInfo') {
-    clearStorage();
-  }
+  if (to.name != 'MagazineInfo') clearStorage();
 });
 
-onActivated(() => {
-  scrollPage();
-});
+onActivated(() => scrollPage());
 
-watch(currentTab, () => {
-  scrollPage();
-});
+watch(currentTab, () => scrollPage());
 
 async function scrollPage() {
   await nextTick();
@@ -90,6 +84,11 @@ async function scrollPage() {
   }
 }
 
+function getLoaclStorageScrollVal() {
+  magazineListScrollVal = getItem('magazineListScrollVal');
+  myFavouriteScrollVal = getItem('myFavouriteScrollVal');
+}
+
 function saveScrollVal(e) {
   if (currentTab.value == 'MagazineList') {
     setItem('magazineListScrollVal', e.target.scrollTop);
@@ -98,12 +97,6 @@ function saveScrollVal(e) {
   }
   scrollVal.value = e.target.scrollTop;
 }
-
-function getLoaclStorageScrollVal() {
-  magazineListScrollVal = getItem('magazineListScrollVal');
-  myFavouriteScrollVal = getItem('myFavouriteScrollVal');
-}
-
 const ishowFloatMenu = computed(() => (scrollVal.value >= 1000 ? true : false));
 const backToTop = () => containerRef.value.scrollTo({ top: 0, behavior: 'smooth' });
 

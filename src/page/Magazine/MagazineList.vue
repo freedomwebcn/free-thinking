@@ -134,7 +134,7 @@ const onLoad = () => {
 }
 
 .loading {
-  width: 100%;
+  width: 375px;
   height: calc(100% - 99px);
   position: absolute;
   bottom: 0;

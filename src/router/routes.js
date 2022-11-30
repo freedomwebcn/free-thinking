@@ -2,8 +2,6 @@ import Home from '@/page/Home.vue';
 import Title from '@/page/Title.vue';
 import Content from '@/page/Content.vue';
 import Magazine from '@/page/Magazine/Magazine.vue';
-import MagazineList from '@/page/Magazine/MagazineList.vue';
-import MyFavourite from '@/page/Magazine/MyFavourite.vue';
 
 import MagazineInfo from '@/page/MagazineInfo.vue';
 
@@ -39,6 +37,11 @@ const routes = [
     name: 'Content',
     component: Content
   }
+  // {
+  //   path: '/test',
+  //   name: 'test',
+  //   component: test
+  // }
 ];
 
 export default routes;
