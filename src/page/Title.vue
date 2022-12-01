@@ -39,7 +39,6 @@ onMounted(() => {
 watch(
   () => route.params,
   async () => {
-    console.log('title--------------------', route.params);
     const id = route.params.id;
     if (!id) return;
     (await getLocalStorgeData()) || getTitleListData(id);

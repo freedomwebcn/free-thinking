@@ -8,7 +8,7 @@
       </p>
 
       <van-divider v-if="contentData.title" />
-      <div class="source">
+      <div class="source" v-if="contentData.source">
         <span v-for="(sourceText, index) in contentData.source">{{ [index + 1] }}：{{ sourceText }}</span>
       </div>
     </div>
