@@ -38,7 +38,7 @@ onBeforeRouteLeave((to) => {
   }
 });
 
-//这里不能用 watch 监听，因为这个组件是缓存组件 当跳转其他路由时 页面数据并没有销毁 同时也会触发watch函数执行
+//这里如果要用 watch 监听， 需要在路由离开时卸载监听，因为这个组件是缓存组件 当跳转其他路由时 页面并没有卸载  同时也会触发watch函数执行
 onActivated(() => {
   result.value.length || getMagazineListData();
 });
