@@ -2,8 +2,7 @@ import Home from '@/page/Home.vue';
 import Title from '@/page/Title.vue';
 import Content from '@/page/Content.vue';
 import Magazine from '@/page/Magazine/Magazine.vue';
-
-import MagazineInfo from '@/page/MagazineInfo.vue';
+import MagazineDir from '@/page/Magazine/MagazineDir.vue';
 
 const routes = [
   {
@@ -28,9 +27,9 @@ const routes = [
     component: Magazine
   },
   {
-    path: '/magazineInfo/:pubid',
-    name: 'MagazineInfo',
-    component: MagazineInfo
+    path: '/Magazine_dir/:pubid',
+    name: 'MagazineDir',
+    component: MagazineDir
   },
   {
     path: '/author/:author_id/:title_id',

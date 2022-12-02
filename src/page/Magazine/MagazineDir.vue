@@ -38,7 +38,9 @@ watch(
   () => route.params,
   async () => {
     if (!route.params.pubid) return;
-    getDirData();
+    setTimeout(() => {
+      getDirData();
+    }, 300);
   },
   {
     immediate: true
@@ -46,9 +48,9 @@ watch(
 );
 
 async function getDirData() {
-  //获取到的是该年份发行的所有期刊
+  //获取到的是所有期刊目录
   const dirData = await reqMagazineDirData({ year });
-  // 遍历所有期刊，找出与当前要查看的期刊 相符的那一项数据
+  // 遍历所有期刊目录，找出当前要查看的期刊目录
   satatus.value = dirData.some((item) => {
     if (issue == item.issue.slice(0, -1)) {
       const { directory } = item;

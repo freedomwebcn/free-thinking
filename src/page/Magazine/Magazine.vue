@@ -41,16 +41,15 @@
     <transition name="van-fade">
       <div class="overlay" v-if="isShow" :class="{ 'z-index': isShow }"></div>
     </transition>
-    <BackToTop :isShowMenu="ishowFloatMenu" @backToTop="backToTop" />
+    <BackToTop :isShowMenu="isShowFloatMenu" @backToTop="backToTop" />
   </van-config-provider>
 </template>
 
 <script setup>
-import { ref, computed, watch, nextTick, onActivated, onMounted } from 'vue';
+import { ref, computed, watch, nextTick, onActivated } from 'vue';
 import MagazineList from './MagazineList.vue';
 import MyFavourite from './MyFavourite.vue';
 import localStorage from './localStorage';
-import { onBeforeRouteLeave } from 'vue-router';
 
 const containerRef = ref(null);
 const isShow = ref(false);
@@ -64,11 +63,7 @@ const tabs = {
 let magazineListScrollVal = 0;
 let myFavouriteScrollVal = 0;
 
-const { setItem, getItem, clearStorage } = localStorage();
-
-onBeforeRouteLeave((to) => {
-  if (to.name != 'MagazineInfo') clearStorage();
-});
+const { setItem, getItem } = localStorage();
 
 onActivated(() => scrollPage());
 
@@ -76,15 +71,11 @@ watch(currentTab, () => scrollPage());
 
 async function scrollPage() {
   await nextTick();
-  getLoaclStorageScrollVal();
-  if (currentTab.value == 'MagazineList') {
-    containerRef.value.scrollTop = magazineListScrollVal;
-  } else {
-    containerRef.value.scrollTop = myFavouriteScrollVal;
-  }
+  getLoaclStorageData();
+  currentTab.value == 'MagazineList' ? (containerRef.value.scrollTop = magazineListScrollVal) : (containerRef.value.scrollTop = myFavouriteScrollVal);
 }
 
-function getLoaclStorageScrollVal() {
+function getLoaclStorageData() {
   magazineListScrollVal = getItem('magazineListScrollVal');
   myFavouriteScrollVal = getItem('myFavouriteScrollVal');
 }
@@ -97,9 +88,11 @@ function saveScrollVal(e) {
   }
   scrollVal.value = e.target.scrollTop;
 }
-const ishowFloatMenu = computed(() => (scrollVal.value >= 1000 ? true : false));
+
+const isShowFloatMenu = computed(() => (scrollVal.value >= 1000 ? true : false));
 const backToTop = () => containerRef.value.scrollTo({ top: 0, behavior: 'smooth' });
 
+// ui框架配置
 const themeVars = ref({
   searchInputHeight: '40px',
   searchBackgroundColor: 'rgb(244, 245, 247)',

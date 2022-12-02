@@ -11,7 +11,7 @@ export default function () {
     return window.localStorage.getItem(key);
   };
 
-  const clearStorage = (key, clearAll = true) => {
+  const clearLocalStorage = (key, clearAll = true) => {
     if (clearAll) {
       window.localStorage.clear();
       return;
@@ -22,6 +22,6 @@ export default function () {
   return {
     setItem,
     getItem,
-    clearStorage
+    clearLocalStorage
   };
 }

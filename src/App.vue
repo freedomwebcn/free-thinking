@@ -2,7 +2,7 @@
   <div class="app">
     <router-view v-slot="{ Component }">
       <template v-if="Component">
-        <KeepAlive :exclude="['MagazineInfo', 'Title', 'Content']">
+        <KeepAlive :exclude="['MagazineDir', 'Title', 'Content']">
           <Suspense>
             <component :is="Component" :key="$route.path" />
           </Suspense>

@@ -1,7 +1,7 @@
 <template>
   <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad" :immediate-check="false" offset="50" v-if="result.length">
     <ul class="magazine-list-content">
-      <li v-for="item in result" :key="item.publishDate" @click="$router.push(`/magazineInfo/${item.publishDate}`)">
+      <li v-for="item in result" :key="item.publishDate" @click="$router.push(`/magazine_dir/${item.publishDate}`)">
         <div class="book-cover">
           <img v-lazy="item.img" alt="" />
           <span class="bookCover_gradientDecor"></span>
@@ -24,21 +24,22 @@ import localStorage from './localStorage';
 const loading = ref(false);
 const finished = ref(false);
 const result = ref([]);
-const { setItem, getItem } = localStorage();
+const { setItem, getItem, clearLocalStorage } = localStorage();
 const formatData = [];
 let chunkData = JSON.parse(getItem('data') || '[]');
 let index = 0;
 
 onBeforeRouteLeave((to) => {
   // 根据跳转的路由 决定是否要清除数据
-  if (to.name != 'MagazineInfo') {
+  if (to.name != 'MagazineDir') {
     //缓存路由跳转后，数据还存在，当跳转到Home路由，再跳进来时用的数据还是之前请求的。
     result.value = [];
     index = 0; //重置index值 防止从home页跳进来 下拉加载时页面数据错位
+    clearLocalStorage();
   }
 });
 
-//这里如果要用 watch 监听， 需要在路由离开时卸载监听，因为这个组件是缓存组件 当跳转其他路由时 页面并没有卸载  同时也会触发watch函数执行
+//这里如果要用 watch 监听路由， 需要在路由离开时卸载监听，因为这个组件是缓存组件 当跳转其他路由时 页面并没有卸载  同时也会触发watch函数执行
 onActivated(() => {
   result.value.length || getMagazineListData();
 });
@@ -83,12 +84,15 @@ const onLoad = () => {
   gap: 10px;
   justify-items: center;
   padding: 110px 10px 0 10px;
+
   li {
     width: 105px;
     border-radius: 5px;
+
     .book-cover {
       position: relative;
       height: 146px;
+
       .bookCover_gradientDecor {
         position: absolute;
         top: 0;
@@ -108,6 +112,7 @@ const onLoad = () => {
         );
         box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.1);
       }
+
       img {
         width: 100%;
         height: 100%;
@@ -116,6 +121,7 @@ const onLoad = () => {
         background: #d8d8d8;
       }
     }
+
     .issue {
       display: block;
       margin: 6px 0;
