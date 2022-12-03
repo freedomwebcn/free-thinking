@@ -78,7 +78,7 @@ async function getDirData() {
     height: 61px;
     line-height: 65px;
     text-align: center;
-    background: url('../assets/w-mdicon4.gif') no-repeat center;
+    background: url('./w-mdicon4.gif') no-repeat center;
     background-size: auto 61px;
     font-size: 16px;
   }

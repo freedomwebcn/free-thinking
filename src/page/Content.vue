@@ -44,8 +44,6 @@ watch(
 );
 </script>
 <style lang="less" scoped>
-@import 'lxgw-wenkai-screen-webfont/style.css';
-
 .article {
   font-family: 'LXGW WenKai Screen', sans-serif;
 
