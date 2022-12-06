@@ -47,6 +47,8 @@
 
 <script setup>
 import { ref, computed, watch, nextTick, onActivated } from 'vue';
+import { onBeforeRouteLeave } from 'vue-router';
+
 import MagazineList from './MagazineList.vue';
 import MyFavourite from './MyFavourite.vue';
 import localStorage from './localStorage';
@@ -66,6 +68,12 @@ let myFavouriteScrollVal = 0;
 const { setItem, getItem } = localStorage();
 
 onActivated(() => scrollPage());
+
+onBeforeRouteLeave((to) => {
+  if (to.name != 'MagazineDir') {
+    scrollVal.value = 0;
+  }
+});
 
 watch(currentTab, () => scrollPage());
 

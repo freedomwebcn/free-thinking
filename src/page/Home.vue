@@ -1,11 +1,11 @@
 <template>
-  <div class="home-container" ref="homeRef">
+  <div class="home-container">
     <h1>
       独立之精神 自由之思想
       <span class="iconfont icon-bi icon"></span>
     </h1>
 
-    <ul>
+    <ul v-if="data.length">
       <li v-for="(item, index) in data" :key="item.pic" @click="getDirData({ id: item.id, isMgz: item.isMgz })" :class="{ 'change-style': item.isMgz || (index == data.length - 2 && isAddClass) }">
         <div class="content">
           <img :src="item.pic" alt="" />
@@ -24,16 +24,28 @@
         </div>
       </li>
     </ul>
+
+    <div class="loading" v-else>
+      <van-loading size="24px" vertical>加载中...</van-loading>
+    </div>
   </div>
 </template>
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onActivated } from 'vue';
 import { useRouter } from 'vue-router';
 // import authorList from '@/assets/author';
 import { reqHomeData } from '@/api';
 
-const data = await reqHomeData();
-const homeRef = ref(null);
+const data = ref([]);
+onActivated(() => {
+  if (data.value.length) {
+    return;
+  }
+  setTimeout(async () => {
+    data.value = await reqHomeData();
+  }, 300);
+});
+
 const router = useRouter();
 const isAddClass = computed(() => ((data.length - 1) % 2 != 0 ? true : false));
 const getDirData = ({ id, isMgz }) => {
@@ -58,7 +70,6 @@ const getDirData = ({ id, isMgz }) => {
     position: relative;
     font-size: 30px;
     padding: 22px 0 10px 0;
-    margin-bottom: 15px;
     text-align: center;
     border-bottom: 3px solid rgb(15, 15, 15);
     font-family: 'Zhi Mang Xing', cursive;
@@ -75,7 +86,8 @@ const getDirData = ({ id, isMgz }) => {
     grid-template-columns: 1fr 1fr;
     gap: 10px;
     align-content: center;
-    margin-bottom: 10px;
+    padding: 15px 0;
+
     li {
       display: flex;
       border-radius: 10px;
@@ -125,6 +137,13 @@ const getDirData = ({ id, isMgz }) => {
         }
       }
     }
+  }
+
+  .loading {
+    display: flex;
+    height: calc(100% - 70px);
+    align-items: center;
+    justify-content: center;
   }
 }
 </style>

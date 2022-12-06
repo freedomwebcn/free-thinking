@@ -1,6 +1,144 @@
-<script>
+<!-- <script>
   console.log(fn);
   const fn = () => {};
   console.log(fn2);
   function fn2() {}
-</script>
+</script> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.3/dist/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
+  </head>
+
+  <style>
+    /* body,
+    html {
+      width: 100%;
+      height: 100%;
+    }
+
+    .outer-box {
+      width: 800px;
+      height: 100px;
+
+      /* linear-gradient(45deg, blue, red); */
+
+    /* background: linear-gradient(90deg, red 10%, black); */
+    /* background: linear-gradient(-4deg, transparent, transparent 25%, #ffb6ff, #b344ff, transparent 75%, transparent); */
+    /* background-image: linear-gradient(0deg, blue, green 40%, red); */
+    /* background-image: linear-gradient(to right, transparent, orange 25%, yellow, green, blue, indigo 75%, transparent); */
+
+    /* background: linear-gradient(0deg, blue 50%, red 50%);
+      /* background-size: 100% 400%;
+      background-position: center 0; */
+    /* background: linear-gradient(-3deg, #000, #000 25%, #ffb6ff 30%, #ffb6ff, #b344ff, #b344ff 70%, #000 75%, #000); */
+    /* } */
+
+    /* 
+    .box1 {
+      width: 800px;
+    }
+
+    .box {
+      display: block;
+      width: 100%;
+      height: 400px;
+      background: linear-gradient(-4deg, transparent, transparent 25%, red, black, transparent 75%, transparent);
+      /* background-size: 100% 400%; */
+    /* background-position: center 0;
+      color: white;
+    } */
+
+    body,
+    html {
+      width: 100%;
+      height: 100%;
+    }
+
+    .g-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+      /* background: #000; */
+    }
+    .text {
+      position: relative;
+      width: 800px;
+      font-size: 40px;
+      margin: auto;
+      line-height: 1.5;
+      padding: 20px;
+      color: #fff;
+      background: #000;
+      /* overflow: hidden; */
+    }
+
+    .bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 400%;
+      background: linear-gradient(-3deg, #000, #000 25%, #ffb6ff, #b344ff, #000 75%, #000);
+      z-index: 1;
+      mix-blend-mode: darken;
+    }
+    .g-scroll {
+      position: relative;
+      width: 100vw;
+      height: 400vw;
+    }
+  </style>
+  <body>
+    <!-- <div class="outer-box"></div>
+    <ul>
+      <li></li>
+    </ul>
+
+    <div class="box1">
+      <div class="box green">66</div>
+    </div> -->
+
+    <div class="g-wrap">
+      <div class="text">
+        灵动的 iPhone 新玩法，迎面而来。重大的安全新功能，为拯救生命而设计。创新的 4800 万像素主摄，让细节纤毫毕现。更有 iPhone 芯片中的速度之王，为一切提供强大原动力。
+        <div class="bg"></div>
+      </div>
+    </div>
+    <div class="g-scroll"></div>
+
+    <script>
+      // var tween = gsap.fromTo('.box', { x: -100 }, { duration: 1, x: 100 });
+
+      // // gsap.to('.box', {
+      // //   duration: 2,
+      // //   backgroundColor: '#8d3dae'
+      // // });
+
+      // var tl = gsap.timeline();
+
+      let tl = gsap
+        .timeline({
+          // yes, we can add it to an entire timeline!
+          scrollTrigger: {
+            trigger: '.g-scroll',
+            // pin the trigger element while active
+            start: 'top top', // when the top of the trigger hits the top of the viewport
+            end: 'bottom bottom', // end after scrolling 500px beyond the start
+            scrub: 1 // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
+          }
+        })
+        .fromTo('.bg', { y: 0 }, { y: '-75%' }, 0);
+    </script>
+  </body>
+</html>
