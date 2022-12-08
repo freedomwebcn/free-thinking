@@ -80,7 +80,7 @@ watch(currentTab, () => scrollPage());
 async function scrollPage() {
   await nextTick();
   getLoaclStorageData();
-  currentTab.value == 'MagazineList' ? (containerRef.value.scrollTop = magazineListScrollVal) : (containerRef.value.scrollTop = myFavouriteScrollVal);
+  containerRef.value.scrollTop = currentTab.value == 'MagazineList' ? magazineListScrollVal : myFavouriteScrollVal;
 }
 
 function getLoaclStorageData() {
