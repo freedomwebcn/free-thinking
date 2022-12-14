@@ -48,7 +48,6 @@
 <script setup>
 import { ref, computed, watch, nextTick, onActivated } from 'vue';
 import { onBeforeRouteLeave } from 'vue-router';
-
 import MagazineList from './MagazineList.vue';
 import MyFavourite from './MyFavourite.vue';
 import localStorage from './localStorage';
